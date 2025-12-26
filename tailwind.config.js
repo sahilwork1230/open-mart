@@ -14,6 +14,9 @@ module.exports = {
         'grover': ['Irish Grover', 'sans-serif'],
         'roboto': ['Roboto', 'sans-serif'],
         'iceland': ['Iceland', 'sans-serif'],
+      },
+      screens:{
+        '3xl':'1600px',
       }
     },
   },
