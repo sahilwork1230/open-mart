@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login |
+{% endblock %}
+
+{% block content %}
+
+<section class="min-h-[100vh] bg-gradient-to-bl from-slate-800 to-red-700 flex items-center justify-center">
+    <div class="w-[350px] py-5 bg-black text-white rounded-xl
+    flex flex-col items-center gap-6
+    ">
+        <div class="relative">
+            <h1 class="text-[50px] text-[#B70000] leading-none uppercase">
+                Login
+            </h1>
+            <span class="h-[1px] w-[40px] bg-[#8E8B8B] absolute top-1 right-0"></span>
+            <span class="h-[1px] w-[40px] bg-[#8E8B8B] absolute bottom-1 left-0"></span>
+        </div>
+        <form class="flex flex-col items-center gap-8 " action="" method="POST">
+            {% csrf_token %}
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="Enter username" type="username" name="username">
+            <p>OR</p>
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="Enter Email" type="Email" name="email">
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="Enter Password" type="password" name="password">
+
+            <button type="submit" class="w-[280px] p-2 bg-[#9C0000] rounded-md hover:shadow-lg hover:shadow-red-800/60"><span
+                    class="text-[#FFDBDB] shadow sm:text-lg">Login</span></button>
+        </form>
+        <div class="w-[280px] text-end">
+            <a href="{% url 'reset-password' %}">
+                <span class="border-b border-[#9C0000]
+                 text-[#F0F0F0]">Forgot Password ?</span>
+            </a>
+        </div>
+        <div class="w-[280px] flex items-center justify-between">
+            <p class="text-[#F0F0F0] border-b border-black">Don't have an account ?</p>
+            <a href="{% url 'signup' %}"><span class="border-b border-[#9C0000] text-[#F0F0F0]">Sign Up</span></a>
+        </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<section class="min-h-screen pt-[80px] text-white bg-gradient-to-r from-black to-slate-900">
+    <div class=" mb-2
+">
+        <div class="h-[650px] relative">
+            <img class="h-full w-full opacity-[45%] transition-all update" src="{% static 'images/logo/hero.avif' %}"
+                alt="hero image">
+            <div class="absolute top-[50%] left-[120px] flex flex-col gap-5">
+                <h1 id="move" class="lg:text-8xl text-red-700 uppercase" style="line-height: 100px;">
+                    Smart Tech. <br> Delivered Worldwide.
+                </h1>
+                <p id="move1" class="lg:text-3xl text-gray-300">Precision-engineered electronics for a smarter world.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="h-[650px]">
+        <h1 class="w-full text-center mt-8 lg:text-8xl"><span class="text-red-700 border-b border-white uppercase">Featured</span>
+            <span class="border-t border-red-700 uppercase">Products</span></h1>
+
+        <div class="w-[1700px] mx-auto mt-10 grid md:grid-cols-4 gap-10 py-5">
+            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
+                <img class="h-full
+                    rounded-lg shadow-lg shadow-red-700/50
+                    " src="{% static '/images/featured-brand/drone.jpg' %}" alt="drone image">
+                <h2 class="lg:text-3xl text-red-700">Drones</h2>
+                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'drones' %}">
+                    <span >Explore!</span>
+                </a>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
+                <img class="h-full
+                    rounded-lg shadow-lg shadow-red-700/50
+                    " src="{% static '/images/featured-brand/robot.jpg' %}" alt="drone image">
+                <h2 class="lg:text-3xl text-red-700">Robots</h2>
+                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'robots' %}">
+                    <span >Explore!</span>
+                </a>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
+                <img class="h-full
+                    rounded-lg shadow-lg shadow-red-700/50
+                    " src="{% static '/images/featured-brand/cam.jpg' %}" alt="drone image">
+                <h2 class="lg:text-3xl text-red-700">Cameras</h2>
+                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'cam' %}">
+                    <span >Explore!</span>
+                </a>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
+                <img class="h-full
+                    rounded-lg shadow-lg shadow-red-700/50
+                    " src="{% static '/images/featured-brand/spare-parts.jpg' %}" alt="drone image">
+                <h2 class="lg:text-3xl text-red-700">Spare Parts</h2>
+                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'spare-parts' %}">
+                    <span >Explore!</span>
+                </a>
+            </div>
+        </div>
+
+</section>
+{% endblock %}

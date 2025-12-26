@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign Up |
+{% endblock %}
+
+{% block content %}
+
+<section class="min-h-[100vh] bg-gradient-to-bl from-slate-800 to-red-700 flex items-center justify-center">
+    <div class="w-[350px] py-5 bg-black text-white rounded-xl
+    flex flex-col items-center gap-6
+    ">
+        <div class="relative">
+            <h1 class="text-[50px] text-[#B70000] leading-none uppercase">
+                Sign Up
+            </h1>
+            <span class="h-[1px] w-[40px] bg-[#8E8B8B] absolute top-1 right-0"></span>
+            <span class="h-[1px] w-[40px] bg-[#8E8B8B] absolute bottom-1 left-0"></span>
+        </div>
+        <form class="flex flex-col items-center gap-8 " action="" method="POST">
+            {% csrf_token %}
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="Email" type="email" name="email">
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="Username" type="text" name="username">
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="Password" type="password" name="password">
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="Confirm Password" type="text" name="confirm_password">
+
+            <button type="submit"
+                class="w-[280px] p-2 bg-[#9C0000] rounded-md hover:shadow-lg hover:shadow-red-800/60"><span
+                    class="text-[#FFDBDB] md:text-lg lg:text-xl">Sign Up</span></button>
+        </form>
+
+        <div class="w-[280px] flex items-center justify-between">
+            <p class="text-[#F0F0F0] border-b border-black">Don't have an account ?</p>
+            <a href="{% url 'login' %}"><span class="border-b border-[#9C0000] text-[#F0F0F0]">Login</span></a>
+        </div>
+
+</section>
+{% endblock %}
