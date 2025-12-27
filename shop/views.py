@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignupForm, LoginForm
+from .models import Category
 from django.contrib.auth import authenticate, login, logout
 
 def home(request):
@@ -8,8 +9,12 @@ def home(request):
 def cart(request):
     pass
 
-def product_view(request):
-    pass
+def product_view(request, category_slug):
+    caterory = get_object_or_404(Category, slug=category_slug)
+
+    products = caterory.products.all()
+    print(products)
+    return render(request, f'products/{category_slug}.html', {"products": products})
 
 
 
