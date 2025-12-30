@@ -24,14 +24,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    
-
-class Cart(models.Model):
-    # ForeignKey creates a 'belongs to' relation -->> Cart belongs to a perticular user 
-    # related_name means a cart can be accessed from a user using .cart 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cart")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"Cart of {self.user.email}"
