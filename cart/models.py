@@ -13,7 +13,7 @@ class Cart(models.Model):
         return f"Cart of {self.user.email}"
     
 
-class cartItem(models.Model):
+class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name = "items")
     product = models.ForeignKey(
         Product,
