@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignupForm, LoginForm
 from .models import Category, Product
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 def home(request):
     return render(request, 'index.html')
@@ -29,6 +31,11 @@ def signup_view(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
+            email = form.cleaned_data.get("email")
+            if User.objects.filter(email=email).exists():
+                raise ValidationError("A user with this email already exists!")
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data["password"])
 
             return redirect('/login/')
     form = SignupForm()

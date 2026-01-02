@@ -16,8 +16,9 @@ class SignupForm(forms.ModelForm):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
-        if password != confirm_password:
-            return forms.ValidationError("Password did not match with confirm password")
+        if password and confirm_password and password != confirm_password:
+            raise forms.ValidationError("Passwords do not match")
+        return cleaned_data
 
     
 
@@ -36,7 +37,7 @@ class LoginForm(forms.Form):
         if not username:
             username = email
         if not username and not email:
-            return forms.ValidationError("A username or Email is required")
+            raise forms.ValidationError("A username or Email is required")
         return cleaned_data
 
     
