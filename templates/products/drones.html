@@ -8,10 +8,10 @@ Drones |
 <section class="min-h-screen bg-gradient-to-l from-[#9C0000] to-[#02002B] pt-[120px]">
     <div class="max-w-[1800px] mx-auto py-10">
         <h1 class="text-slate-400 lg:text-8xl md:text-6xl leading-none border-b border-slate-600 ml-[100px]">Drones</h1>
-        <div class="w-full grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 mx-auto px-[100px] gap-5">
+        <div class="w-full grid 2xl:grid-cols-3 3xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 mx-auto px-[100px] gap-5">
 
             {% for product in products %}
-            <div class="flex flex-col items-center text-white py-10 bg-white/10 gap-3 backdrop-blur-lg border border-white/20
+            <div class="flex flex-col items-center justify-center text-center text-white py-10 bg-white/10 gap-3 backdrop-blur-lg border border-white/20
                 rounded-2xl shadow-xl shadow-black/30          ">
                 <img class="h-[300px] w-[300px] rounded-md" src="{{product.image.url}}" alt="product-image">
                 <h2 class="text-3xl">{{product.title}}</h2>

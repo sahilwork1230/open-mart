@@ -9,6 +9,9 @@ class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def total_price(self):
+        return sum(item.subtotal() for item in self.items.all())
+
     def __str__(self):
         return f"Cart of {self.user.email}"
     

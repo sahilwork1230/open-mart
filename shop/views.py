@@ -8,9 +8,6 @@ from django.core.exceptions import ValidationError
 def home(request):
     return render(request, 'index.html')
 
-def cart(request):
-    pass
-
 def product_view(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
 
@@ -36,6 +33,7 @@ def signup_view(request):
                 raise ValidationError("A user with this email already exists!")
             user = form.save(commit=False)
             user.set_password(form.cleaned_data["password"])
+            user.save()
 
             return redirect('/login/')
     form = SignupForm()

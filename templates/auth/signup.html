@@ -6,9 +6,9 @@ Sign Up |
 
 {% block content %}
 
-<section class="min-h-[100vh] bg-gradient-to-bl from-slate-800 to-red-700 flex items-center justify-center pt-[120px]">
+<section class="min-h-[100vh] bg-gradient-to-bl from-slate-800 to-red-700 flex items-center justify-center py-[120px]">
     <div class="w-[350px] py-5 bg-black text-white rounded-xl
-    flex flex-col items-center gap-6
+    flex flex-col items-center gap-6 mb-[60px]
     ">
         <div class="relative">
             <h1 class="text-[50px] text-[#B70000] leading-none uppercase">
@@ -19,6 +19,10 @@ Sign Up |
         </div>
         <form class="flex flex-col items-center gap-8 " action="" method="POST">
             {% csrf_token %}
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="First Name" type="text" name="first_name">
+            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                placeholder="last_name" type="text" name="last_name">
             <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
                 placeholder="Email" type="email" name="email">
             <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
@@ -37,6 +41,6 @@ Sign Up |
             <p class="text-[#F0F0F0] border-b border-black">Don't have an account ?</p>
             <a href="{% url 'login' %}"><span class="border-b border-[#9C0000] text-[#F0F0F0]">Login</span></a>
         </div>
-
+    </div>
 </section>
 {% endblock %}

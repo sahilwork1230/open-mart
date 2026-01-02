@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="min-h-screen pt-[120px] text-white bg-gradient-to-l from-[#9C0000] to-[#02002B]">
+    <div class="max-w-[1200px] mx-auto px-6">
+
+        <h1 class="text-4xl mb-8">Your Cart</h1>
+
+        {% if cart.items.all %}
+            <div class="space-y-6">
+
+                {% for item in cart.items.all %}
+                <div class="flex justify-between items-center bg-white/10 p-6 rounded-xl">
+                    <div>
+                        <h2 class="text-xl">{{ item.product.title }}</h2>
+                        <p class="text-gray-400">
+                            ₹{{ item.price }} × {{ item.quantity }}
+                        </p>
+                    </div>
+
+                    <div class="text-lg">
+                        ₹{{ item.subtotal }}
+                    </div>
+
+                    <a href="{% url 'remove_from_cart' item.id %}"
+                       class="text-red-400 hover:underline">
+                        Remove
+                    </a>
+                </div>
+                {% endfor %}
+
+                <div class="text-right text-2xl mt-8">
+                    Total: ₹{{ cart.total_price }}
+                </div>
+
+            </div>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

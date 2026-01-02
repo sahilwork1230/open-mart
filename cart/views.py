@@ -20,10 +20,23 @@ def add_to_cart(request, product_id):
 
 
     cart_item.save()
-    return redirect("cart")
+    return redirect("cart_detail")
 
 @login_required
-def view_cart(request):
-    pass
+def cart_detail(request):
+    cart = request.user.cart
+    return render(request, "cart/cart-detail.html", {"cart": cart})
+
+
+@login_required
+def remove_from_cart(request, item_id):
+    cart_item = get_object_or_404(
+        CartItem,
+        id=item_id,
+        cart=request.user.cart
+    )
+    cart_item.delete()
+    return redirect("cart_detail")
+
 
 
