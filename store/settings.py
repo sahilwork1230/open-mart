@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'orders',
+    'phonenumber_field',
     'django_browser_reload',
 ]
 
