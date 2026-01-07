@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="min-h-screen pt-[120px] text-white bg-gradient-to-t from-[#020202] to-[#053E61]">
+<section class="min-h-screen pt-[120px] text-white bg-gradient-to-b from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]
+">
     <div class="max-w-[1200px] mx-auto px-6">
 
         <h1 class="text-4xl mb-8">Your Cart</h1>
@@ -29,8 +30,27 @@
                 </div>
                 {% endfor %}
 
+                <!-- Cart Total -->
                 <div class="text-right text-2xl mt-8">
                     Total: ₹{{ cart.total_price }}
+                </div>
+
+                <!-- Checkout Section (Flipkart-style) -->
+                <div class="mt-10 flex justify-end">
+                    <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl w-full md:w-[400px] text-right">
+                        <p class="text-gray-300 mb-2">
+                            Total Amount
+                        </p>
+                        <p class="text-3xl font-semibold mb-6">
+                            ₹{{ cart.total_price }}
+                        </p>
+
+                        <a href="{}">
+                            <button class="w-full py-4 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300 transition">
+                                Proceed to Checkout
+                            </button>
+                        </a>
+                    </div>
                 </div>
 
             </div>
