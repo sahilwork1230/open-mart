@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SignupForm, LoginForm
 from .models import Category, Product
+from .forms import AddressForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'index.html')
@@ -19,8 +21,19 @@ def product_detail(request, product_title, product_id):
 
     return render(request, 'products/product-details.html', {'product':product})
 
+@login_required
+def add_address(request):
+    if request.method == "POST":
+        form = AddressForm(request.POST)
 
-
+        if form.is_valid():
+            address = form.save(commit=False)
+            address.user = request.user
+            address.save()
+            print("ADDRESS SAVED")
+        else:
+            print("FORM ERRORS:", form.errors)
+    return redirect("checkout")
 
 
 #auth views

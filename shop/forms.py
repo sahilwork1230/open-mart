@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Address
 
 class SignupForm(forms.ModelForm):
     email = forms.CharField(required=True)
@@ -40,4 +41,10 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("A username or Email is required")
         return cleaned_data
 
+
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        exclude = ("user",)
     
