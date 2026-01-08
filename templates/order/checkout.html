@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Checkout
+{% endblock %}
+
+{% block content %}
+<section class="min-h-screen pt-[120px] text-white bg-gradient-to-b 
+from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
+
+    <div class="max-w-[1200px] mx-auto px-6">
+
+        <!-- PAGE TITLE -->
+        <h1 class="text-4xl mb-10">Checkout</h1>
+
+        <!-- ================= ORDER SUMMARY ================= -->
+        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl mb-10">
+            <h2 class="text-2xl mb-6">Order Summary</h2>
+
+            {% for item in cart.items.all %}
+            <div class="flex justify-between items-center border-b border-white/10 py-4">
+                <div>
+                    <h3 class="text-lg">{{ item.product.title }}</h3>
+                    <p class="text-gray-400">
+                        ₹{{ item.price }} × {{ item.quantity }}
+                    </p>
+                </div>
+                <p class="text-lg">
+                    ₹{{ item.subtotal }}
+                </p>
+            </div>
+            {% endfor %}
+
+            <div class="flex justify-between mt-6 text-2xl">
+                <span>Total</span>
+                <span>₹{{ cart.total_price }}</span>
+            </div>
+        </div>
+
+        <!-- ================= ADDRESS SELECTION ================= -->
+        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl mb-10">
+            <h2 class="text-2xl mb-6">Delivery Address</h2>
+
+            {% if addresses %}
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="space-y-4">
+                    {% for address in addresses %}
+                    <label class="block p-5 rounded-lg border border-white/20 cursor-pointer 
+                                   hover:bg-white/10 transition">
+                        <input type="radio" name="address_id" value="{{ address.id }}" class="mr-2">
+                        <p class="font-medium">{{ address.name }}</p>
+                        <p class="text-gray-400 text-sm">
+                            {{ address.full_address }}, {{ address.city }} - {{ address.pincode }}
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            Phone: {{ address.phone_number }}
+                        </p>
+                    </label>
+                    {% endfor %}
+                </div>
+            </form>
+            {% else %}
+            <p class="text-gray-400">
+                No saved address found. Please add a new address below.
+            </p>
+            {% endif %}
+        </div>
+
+        <!-- ================= ADD NEW ADDRESS ================= -->
+        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl mb-10">
+            <h2 class="text-2xl mb-6">Add New Address</h2>
+
+            <form method="POST" action="{% url 'address' %}">
+                {% csrf_token %}
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <input type="text" name="name" placeholder="Full Name"
+                        class="w-full bg-white/10 border border-white/20 p-3 rounded-lg text-white" required>
+
+                    <input type="tel" name="phone_number" placeholder="Phone Number"
+                        class="w-full bg-white/10 border border-white/20 p-3 rounded-lg text-white" required>
+
+                    <input type="text" name="pincode" placeholder="Pincode"
+                        class="w-full bg-white/10 border border-white/20 p-3 rounded-lg text-white" required>
+
+                    <input type="text" name="city" placeholder="City"
+                        class="w-full bg-white/10 border border-white/20 p-3 rounded-lg text-white" required>
+
+                    <!-- STATE (REQUIRED) -->
+                    <select name="state" class="w-full bg-white/10 border border-white/20 p-3 rounded-lg text-white"
+                        required>
+                        <option class="text-black" value="">Select State</option>
+                        {% for state in states %}
+                        <option class="bg-black text-white" value="{{state}}">{{state}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <!-- ADDRESS TYPE -->
+                    <select name="address_type"
+                        class="w-full bg-white/10 border border-white/20 p-3 rounded-lg text-white">
+                        <option class="text-black" value="HM">Home Address</option>
+                        <option class="bg-black text-white" value="WK">Work Address</option>
+                    </select>
+                </div>
+
+                <textarea name="locality" placeholder="Locality / Area"
+                    class="w-full mt-4 bg-white/10 border border-white/20 p-3 rounded-lg text-white"
+                    required></textarea>
+
+                <textarea name="full_address" placeholder="Complete Address"
+                    class="w-full mt-4 bg-white/10 border border-white/20 p-3 rounded-lg text-white"
+                    required></textarea>
+
+                <!-- COUNTRY (HIDDEN BUT EXPLICIT) -->
+                <input type="hidden" name="country" value="India">
+
+                <button type="submit" class="mt-6 px-8 py-4 bg-yellow-400 text-black font-semibold 
+                   rounded-lg hover:bg-yellow-300 transition">
+                    Save Address
+                </button>
+            </form>
+
+        </div>
+
+        <!-- ================= PLACE ORDER ================= -->
+        <div class="flex justify-end">
+            <div class="bg-white/10 backdrop-blur-lg p-6 mb-10 rounded-xl w-full md:w-[400px] text-right">
+                <p class="text-gray-300 mb-2">
+                    Payable Amount
+                </p>
+                <p class="text-3xl font-semibold mb-6">
+                    ₹{{ cart.total_price }}
+                </p>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="w-full py-4 bg-yellow-400 text-black font-semibold 
+                                   rounded-lg hover:bg-yellow-300 transition">
+                        Place Order
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
