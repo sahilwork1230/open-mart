@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_browser_reload',
 ]
+PHONENUMBER_DEFAULT_REGION = "IN"
 
 MIDDLEWARE = [
     'django_browser_reload.middleware.BrowserReloadMiddleware',

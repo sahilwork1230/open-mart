@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Order, OrderItem
 from django.shortcuts import redirect, get_object_or_404
 from cart.models import Cart
+from shop.utils.indian_states import INDIAN_STATES
 
 # @login_required
 # def create_order(request):
@@ -44,10 +45,11 @@ def checkout_view(request):
     addresses = request.user.addresses.all()
     return render(
         request,
-        'orders/checkout.html',
+        'order/checkout.html',
         {
             "cart": cart,
-            "addresses": addresses
+            "addresses": addresses,
+            "states": INDIAN_STATES
         }
     )
 
