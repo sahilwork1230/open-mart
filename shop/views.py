@@ -74,3 +74,6 @@ def logout_view(request):
 
 def reset_password(request):
     pass
+
+def test(request):
+    return render(request, 'test.html')

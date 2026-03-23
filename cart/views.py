@@ -4,7 +4,7 @@ from shop.models import Product
 from .models import Cart, CartItem
 
 
-@login_required
+@login_required(login_url="login")
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart, created = Cart.objects.get_or_create(user = request.user)
@@ -22,7 +22,7 @@ def add_to_cart(request, product_id):
     cart_item.save()
     return redirect("cart_detail")
 
-@login_required
+@login_required(login_url="login")
 def cart_detail(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     return render(request, "cart/cart-detail.html", {"cart": cart})

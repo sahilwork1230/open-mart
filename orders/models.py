@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-
+#ManyToOne relation--> many orders belong to a specific user
 class Order(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

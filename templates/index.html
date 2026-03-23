@@ -6,17 +6,19 @@ Home
 {% endblock %}
 
 {% block content %}
-<section class="min-h-screen pt-[80px] text-white bg-gradient-to-r from-black to-slate-900">
+<section class="min-h-screen text-white bg-gradient-to-r from-black to-slate-900 mt-[80px]">
     <div class=" mb-2
 ">
-        <div class="h-[650px] relative">
-            <img class="h-full w-full opacity-[45%] transition-all update" src="{% static 'images/logo/hero.avif' %}"
-                alt="hero image">
-            <div class="absolute top-[50%] left-[120px] flex flex-col gap-5">
-                <h1 id="move" class="lg:text-8xl text-red-700 uppercase" style="line-height: 100px;">
-                    Smart Tech. <br> Delivered Worldwide.
+        <div class=" relative">
+            <img class="h-full w-full opacity-[45%] transition-all update"
+                src="{% static 'images/banner/hero_image.webp' %}" alt="hero image">
+            <div class="absolute top-[50%] left-[120px] flex flex-col gap-5 hero">
+                <h1 id="move" class="font-bogle font-bold lg:text-8xl text-indigo-300 uppercase "
+                    style="line-height: 100px;">
+                    Discover Toys That <br> Spark Creativity
                 </h1>
-                <p id="move1" class="lg:text-3xl text-gray-300">Precision-engineered electronics for a smarter world.
+                <p id="move1" class="lg:text-3xl text-gray-300">From action figures to creative playsets — explore toys
+                    that inspire adventure
                 </p>
 
             </div>
@@ -24,11 +26,226 @@ Home
 
     </div>
 
-    <div class="h-[650px]">
-        <h1 class="w-full text-center mt-8 lg:text-8xl"><span class="text-red-700 border-b border-white uppercase">Featured</span>
-            <span class="border-t border-red-700 uppercase">Products</span></h1>
 
-        <div class="w-[1700px] mx-auto mt-10 grid md:grid-cols-4 gap-10 py-5">
+
+    <section class="min-h-screen bg-gradient-to-r from-slate-900 to-black overflow-hidden py-20 px-4">
+
+        <h1 class="w-full text-center mt-8 lg:text-8xl"><span
+                class="text-red-700 border-b border-white uppercase">Featured</span>
+            <span class="border-t border-red-700 uppercase">Products</span>
+        </h1>
+        <!-- train is the slide container that will control the sliding effect -->
+        <div class="train flex items-center justify-center relative">
+            <!-- following are the slider buttons -->
+            <div class="slider-buttons">
+                <button class="left">
+                    <span class="material-symbols-outlined text-white">
+                        chevron_forward
+                    </span>
+                </button>
+                <button class="right">
+                    <span class="material-symbols-outlined text-white">
+                        chevron_forward
+                    </span>
+                </button>
+
+            </div>
+            <!-- a list of slides where only one slide will be visible at a time -->
+            <div
+                class="category-showcase-container relative w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-[100px] perspective-container mx-auto">
+
+
+                <div
+                    class="panel panel-left w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-8 relative">
+                    <img src="{% static 'images/LittlePeople.png' %}" alt="Featured Toys Placeholder"
+                        class="w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
+                        style="transform: translateZ(30px);">
+                </div>
+
+                <a href="{% url 'home' %}"
+                    class="explore-btn flex flex-col items-center justify-center bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-8 px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
+                    <span>E</span>
+                    <span class="my-[2px]">X</span>
+                    <span class="my-[2px]">P</span>
+                    <span class="my-[2px]">L</span>
+                    <span class="my-[2px]">O</span>
+                    <span class="my-[2px]">R</span>
+                    <span>E</span>
+                </a>
+
+
+                <div
+                    class="panel panel-right w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-10 md:p-14 relative overflow-hidden">
+
+                    <div
+                        class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                    </div>
+
+                    <div class="relative z-10 h-full flex flex-col justify-center items-start pl-2">
+                        <h2 class="font-black italic text-[3rem] md:text-[3.5rem] leading-[1.05] text-white mb-10 uppercase font-sans tracking-tight"
+                            style="transform: skewX(-8deg);">
+                            BIG ADVENTURES<br>FOR LITTLE HANDS!
+                        </h2>
+
+                        <p
+                            class="text-white/95 text-[1.1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-[320px] font-sans">
+                            Bring their favorite worlds to life<br>with the iconic Fisher-Price Little People collection<br>Perfectly sized for small hands<br>to grasp and move.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div
+                class="category-showcase-container relative w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-[100px] perspective-container mx-auto">
+
+
+                <div
+                    class="panel panel-left w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-8 relative">
+                    <img src="{% static 'images/kid-toys.png' %}" alt="Featured Toys Placeholder"
+                        class="w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
+                        style="transform: translateZ(30px);">
+                </div>
+
+                <button
+                    class="explore-btn flex flex-col items-center justify-center bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-8 px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
+                    <span>E</span>
+                    <span class="my-[2px]">X</span>
+                    <span class="my-[2px]">P</span>
+                    <span class="my-[2px]">L</span>
+                    <span class="my-[2px]">O</span>
+                    <span class="my-[2px]">R</span>
+                    <span>E</span>
+                </button>
+
+
+                <div
+                    class="panel panel-right w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-10 md:p-14 relative overflow-hidden">
+
+                    <div
+                        class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                    </div>
+
+                    <div class="relative z-10 h-full flex flex-col justify-center items-start pl-2">
+                        <h2 class="font-black italic text-[3rem] md:text-[3.5rem] leading-[1.05] text-white mb-10 uppercase font-sans tracking-tight"
+                            style="transform: skewX(-8deg);">
+                            UNLEASH THE<br>HERO WITHIN !
+                        </h2>
+
+                        <p
+                            class="text-white/95 text-[1.1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-[320px] font-sans">
+                            Meet your little one's new<br>best friend. Our ultra-soft<br>plush collection
+                            features<br>everything from magical<br>unicorns to classic bears, all<br>designed with the
+                            gentlest<br>fabrics for endless hugs.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </section>
+
+</section>
+
+<style>
+    .train {
+        display: grid !important;
+        place-items: center;
+        overflow: hidden;
+    }
+
+    .category-showcase-container {
+        grid-area: 1 / 1;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .category-showcase-container.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+        z-index: 10;
+    }
+
+    .category-showcase-container.slide-left {
+        transform: translateX(-100vw);
+    }
+    
+    .category-showcase-container.slide-right {
+        transform: translateX(100vw);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.category-showcase-container');
+        const btnLeft = document.querySelector('.slider-buttons .left');
+        const btnRight = document.querySelector('.slider-buttons .right');
+        
+        if (!slides.length) return;
+        
+        let currentSlide = 0;
+        let isAnimating = false;
+
+        slides.forEach((slide, index) => {
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.add('slide-right');
+            }
+        });
+
+        function goToSlide(newIndex, direction) {
+            if (isAnimating || newIndex === currentSlide) return;
+            isAnimating = true;
+
+            const current = slides[currentSlide];
+            const next = slides[newIndex];
+
+            // Prepare the next slide's starting position without triggering transition
+            next.style.transition = 'none';
+            next.classList.remove('slide-left', 'slide-right', 'active');
+            next.classList.add(direction === 'next' ? 'slide-right' : 'slide-left');
+
+            // Force reflow
+            void next.offsetWidth;
+
+            // Restore transition
+            next.style.transition = '';
+
+            // Animate current slide away
+            current.classList.remove('active');
+            current.classList.add(direction === 'next' ? 'slide-left' : 'slide-right');
+
+            // Animate next slide in
+            next.classList.remove('slide-left', 'slide-right');
+            next.classList.add('active');
+
+            currentSlide = newIndex;
+
+            // Unlock animating state after transition finishes
+            setTimeout(() => {
+                isAnimating = false;
+            }, 600); // 600ms matches the CSS transition time
+        }
+
+        btnRight.addEventListener('click', () => {
+            goToSlide((currentSlide + 1) % slides.length, 'next');
+        });
+
+        btnLeft.addEventListener('click', () => {
+            goToSlide((currentSlide - 1 + slides.length) % slides.length, 'prev');
+        });
+    });
+</script>
+{% endblock %}
+
+<!-- <div class="w-[1700px] mx-auto mt-10 grid md:grid-cols-4 gap-10 py-5">
             <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
                 <img class="h-full
                     rounded-lg shadow-lg shadow-red-700/50
@@ -65,7 +282,4 @@ Home
                     <span >Explore!</span>
                 </a>
             </div>
-        </div>
-
-</section>
-{% endblock %}
+        </div> -->

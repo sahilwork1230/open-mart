@@ -36,7 +36,7 @@ from shop.utils.indian_states import INDIAN_STATES
 #     cart.items.all().delete()
 #     return redirect("home")
 
-@login_required
+@login_required(login_url='login')
 def checkout_view(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     # safety check

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+
+
+{% endblock header %}
+
+{% block content %}
+
+<section class="min-h-screen bg-gradient-to-r from-slate-900 to-black overflow-hidden py-20 px-4">
+
+    <div class="train flex items-center justify-center relative">
+        <div class="slider-buttons">
+            <button class="left">
+                <span class="material-symbols-outlined text-white">
+                    chevron_forward
+                </span>
+            </button>
+            <button class="right">
+                <span class="material-symbols-outlined text-white">
+                    chevron_forward
+                </span>
+            </button>
+
+        </div>
+        <div
+            class="category-showcase-container relative w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-[100px] perspective-container mx-auto">
+
+
+            <div
+                class="panel panel-left w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-8 relative">
+                <img src="{% static 'images/kid-toys.png' %}" alt="Featured Toys Placeholder"
+                    class="w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
+                    style="transform: translateZ(30px);">
+            </div>
+
+            <button
+                class="explore-btn flex flex-col items-center justify-center bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-8 px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
+                <span>E</span>
+                <span class="my-[2px]">X</span>
+                <span class="my-[2px]">P</span>
+                <span class="my-[2px]">L</span>
+                <span class="my-[2px]">O</span>
+                <span class="my-[2px]">R</span>
+                <span>E</span>
+            </button>
+
+
+            <div
+                class="panel panel-right w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-10 md:p-14 relative overflow-hidden">
+
+                <div
+                    class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                </div>
+
+                <div class="relative z-10 h-full flex flex-col justify-center items-start pl-2">
+                    <h2 class="font-black italic text-[3rem] md:text-[3.5rem] leading-[1.05] text-white mb-10 uppercase font-sans tracking-tight"
+                        style="transform: skewX(-8deg);">
+                        UNLEASH THE<br>HERO WITHIN !
+                    </h2>
+
+                    <p
+                        class="text-white/95 text-[1.1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-[320px] font-sans">
+                        Meet your little one's new<br>best friend. Our ultra-soft<br>plush collection
+                        features<br>everything from magical<br>unicorns to classic bears, all<br>designed with the
+                        gentlest<br>fabrics for endless hugs.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+</section>
+
+{% endblock %}
+
+
+<!-- <div class="category-showcase-container relative w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-[100px] perspective-container mx-auto">
+        
+        
+        <div class="panel panel-left w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-8 relative">
+            <img src="{% static 'images/kid-toys.png' %}" alt="Featured Toys Placeholder" class="w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten" style="transform: translateZ(30px);">
+        </div>
+
+        <button class="explore-btn flex flex-col items-center justify-center bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-8 px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
+            <span>E</span>
+            <span class="my-[2px]">X</span>
+            <span class="my-[2px]">P</span>
+            <span class="my-[2px]">L</span>
+            <span class="my-[2px]">O</span>
+            <span class="my-[2px]">R</span>
+            <span>E</span>
+        </button>
+
+        
+        <div class="panel panel-right w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-10 md:p-14 relative overflow-hidden">
+            
+            <div class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+            
+            <div class="relative z-10 h-full flex flex-col justify-center items-start pl-2">
+                <h2 class="font-black italic text-[3rem] md:text-[3.5rem] leading-[1.05] text-white mb-10 uppercase font-sans tracking-tight" style="transform: skewX(-8deg);">
+                    UNLEASH THE<br>HERO WITHIN !
+                </h2>
+                
+                <p class="text-white/95 text-[1.1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-[320px] font-sans">
+                    Meet your little one's new<br>best friend. Our ultra-soft<br>plush collection features<br>everything from magical<br>unicorns to classic bears, all<br>designed with the gentlest<br>fabrics for endless hugs.
+                </p>
+            </div>
+        </div>
+        
+    </div> -->
