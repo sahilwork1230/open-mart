@@ -72,9 +72,18 @@ def place_order(request):
         total_price = cart.total_price(),
         is_paid = True,
     )
-    print(new_order_instance.address_snapshot)
-    print(cart.items.all())
-    print(address)
+    
+    # Copy cart items in Order object
+    for item in cart.items.all():
+        OrderItem.objects.create(
+            order = new_order_instance,
+            product_name = item.product.title,
+            price = item.price,
+            quantity = item.quantity
+        )
+
+    # Clear cart AFTER successful order 
+    cart.items.all().delete()
 
     return render(request, 'order/order_success.html')
 

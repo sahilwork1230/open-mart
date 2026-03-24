@@ -13,6 +13,8 @@ class Order(models.Model):
         ('Completed', 'Completed'),
         ('Failed', 'Failed'),
     )
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
+    tracking_number = models.CharField(max_length=100, null=True, blank=True)
     address = models.ForeignKey(Address, on_delete= models.PROTECT)
     address_snapshot = models.TextField(null=True, blank=True, default="JTPL")
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
