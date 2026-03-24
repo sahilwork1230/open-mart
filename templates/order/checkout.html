@@ -10,11 +10,9 @@ Checkout
 from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
 
     <div class="max-w-[1200px] mx-auto px-6">
-
-        <!-- PAGE TITLE -->
         <h1 class="text-4xl mb-10">Checkout</h1>
 
-        <!-- ================= ORDER SUMMARY ================= -->
+        <!--ORDER SUMMARY SECTION-->
         <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl mb-10">
             <h2 class="text-2xl mb-6">Order Summary</h2>
 
@@ -50,7 +48,7 @@ from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
                     {% for address in addresses %}
                     <label class="block p-5 rounded-lg border border-white/20 cursor-pointer 
                                    hover:bg-white/10 transition">
-                        <input type="radio" name="address_id" value="{{ address.id }}" class="mr-2">
+                        <input type="radio" name="address_id" value="{{ address.id }}" class="mr-2" onchange="setAddressID(this.value)">
                         <p class="font-medium">{{ address.name }}</p>
                         <p class="text-gray-400 text-sm">
                             {{ address.full_address }}, {{ address.city }} - {{ address.pincode }}
@@ -69,7 +67,7 @@ from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
             {% endif %}
         </div>
 
-        <!-- ================= ADD NEW ADDRESS ================= -->
+       <!-- add new address -->
         <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl mb-10">
             <h2 class="text-2xl mb-6">Add New Address</h2>
 
@@ -126,7 +124,7 @@ from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
 
         </div>
 
-        <!-- ================= PLACE ORDER ================= -->
+        <!-- this part will be continued when completing full order part -->
         <div class="flex justify-end">
             <div class="bg-white/10 backdrop-blur-lg p-6 mb-10 rounded-xl w-full md:w-[400px] text-right">
                 <p class="text-gray-300 mb-2">
@@ -136,8 +134,11 @@ from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
                     ₹{{ cart.total_price }}
                 </p>
 
-                <form method="POST">
+                <form method="POST" action="{% url 'place_order' %}">
                     {% csrf_token %}
+                    <label for="address">
+                        <input type="hidden" id="address" name="address" class="final_order_address" value="">
+                    </label>
                     <button type="submit" class="w-full py-4 bg-yellow-400 text-black font-semibold 
                                    rounded-lg hover:bg-yellow-300 transition">
                         Place Order

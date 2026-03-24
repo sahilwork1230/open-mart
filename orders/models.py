@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from shop.models import Address
 
 #ManyToOne relation--> many orders belong to a specific user
 class Order(models.Model):
@@ -7,6 +8,13 @@ class Order(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete= models.PROTECT
     )
+    STATUS_CHOICES = (
+        ('Pending', 'Pending'),
+        ('Completed', 'Completed'),
+        ('Failed', 'Failed'),
+    )
+    address = models.ForeignKey(Address, on_delete= models.PROTECT)
+    address_snapshot = models.TextField(null=True, blank=True, default="JTPL")
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     is_paid = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

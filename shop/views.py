@@ -21,7 +21,7 @@ def product_detail(request, product_title, product_id):
 
     return render(request, 'products/product-details.html', {'product':product})
 
-@login_required
+@login_required(login_url='login')
 def add_address(request):
     if request.method == "POST":
         form = AddressForm(request.POST)
