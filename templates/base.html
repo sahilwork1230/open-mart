@@ -50,7 +50,7 @@
                 <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Composite</a></li> -->
             </ul>
             <div class=" flex items-center justify-center gap-8">
-                <a class="" href="{% url 'login' %}"><i class="fa-solid fa-user text-2xl"></i></a>
+                <a class="" href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}"><i class="fa-solid fa-user text-2xl"></i></a>
                 <a href="{% url 'cart_detail' %}"><i class="fa-brands fa-opencart text-2xl"></i></a>
             </div>
         </div>

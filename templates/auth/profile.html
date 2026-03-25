@@ -1,10 +1,106 @@
-{% extends 'base.html' %}
-{% block title %}
-Profile |
-{% endblock %}
-
+{% extends "base.html" %}
+{% block title %}User Profile{% endblock %}
 {% block content %}
-<section>
-    This is profile page
+<section class="min-h-screen pt-[120px] text-white bg-gradient-to-b from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
+    <div class="max-w-[1200px] mx-auto px-6">
+        <h1 class="text-4xl mb-10">User Dashboard</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-20">
+            <!-- Sidebar -->
+            <div class="col-span-1 bg-white/10 backdrop-blur-lg p-6 rounded-xl h-max border border-white/5">
+                <div class="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
+                    <div class="w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-3xl font-bold uppercase shadow-[0_0_15px_rgba(79,70,229,0.5)]">
+                        {{ user.username|make_list|first }}
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold truncate max-w-[150px]">{{ user.get_full_name|default:user.username }}</h2>
+                        <p class="text-gray-400 text-sm truncate max-w-[150px]">{{ user.email }}</p>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-2">
+                    <a href="{% url 'profile' %}" class="px-4 py-3 rounded-lg bg-indigo-600/30 font-semibold border border-indigo-500/50 shadow-[0_0_10px_rgba(79,70,229,0.2)] transition hover:bg-indigo-600/40">Dashboard Overview</a>
+                    <a href="{% url 'cart_detail' %}" class="px-4 py-3 rounded-lg hover:bg-white/10 border border-transparent transition text-gray-200">My Cart</a>
+                    <a href="{% url 'logout' %}" class="px-4 py-3 rounded-lg hover:bg-red-500/20 text-red-400 border border-transparent transition mt-4">Logout</a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-span-1 md:col-span-2 space-y-10">
+                <!-- Addresses Section -->
+                <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/5">
+                    <div class="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+                        <h3 class="text-2xl font-bold">Saved Addresses</h3>
+                        <a href="{% url 'checkout' %}" class="text-sm text-indigo-400 hover:text-indigo-300 underline">+ Add New</a>
+                    </div>
+                    
+                    {% if addresses %}
+                        <div class="grid sm:grid-cols-2 gap-4">
+                        {% for address in addresses %}
+                            <div class="p-5 rounded-lg border border-white/10 bg-black/30 hover:border-indigo-500/50 transition duration-300">
+                                <span class="text-xs font-bold px-2 py-1 bg-indigo-600/80 rounded mb-3 inline-block shadow-[0_0_5px_rgba(79,70,229,0.5)]">
+                                    {% if address.address_type == 'HM' %}Home{% else %}Work{% endif %}
+                                </span>
+                                <p class="font-bold text-lg text-white/90">{{ address.name }}</p>
+                                <p class="text-gray-400 text-sm mt-1 leading-relaxed">{{ address.full_address }}, {{ address.locality }}</p>
+                                <p class="text-gray-400 text-sm">{{ address.city }}, {{ address.state }} - {{ address.pincode }}</p>
+                                <p class="text-gray-300 text-sm mt-3 flex items-center gap-2"><i class="fa-solid fa-phone text-xs"></i> {{ address.phone_number }}</p>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-8">
+                            <i class="fa-solid fa-map-location-dot text-4xl text-gray-500 mb-3"></i>
+                            <p class="text-gray-400">No saved addresses found.</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Order History Section -->
+                <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/5">
+                    <h3 class="text-2xl font-bold mb-6 pb-4 border-b border-white/10">Order History</h3>
+                    {% if orders %}
+                        <div class="space-y-4">
+                        {% for order in orders %}
+                            <div class="p-5 rounded-lg bg-black/30 border border-white/10 hover:border-white/30 transition flex flex-col md:flex-row justify-between md:items-center gap-4 group">
+                                <div>
+                                    <div class="flex items-center gap-3 mb-1">
+                                        <p class="font-bold text-lg text-indigo-100">Order #{{ order.id }}</p>
+                                        <p class="text-xs text-gray-400">{{ order.created_at|date:"M d, Y" }}</p>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Total: <span class="text-white font-medium">₹{{ order.total_price }}</span></p>
+                                    {% if order.tracking_number %}
+                                        <p class="text-sm text-gray-400 mt-2">Tracking: <span class="text-indigo-400 font-mono">{{ order.tracking_number }}</span></p>
+                                    {% endif %}
+                                </div>
+                                <div class="flex flex-col items-start md:items-end gap-3">
+                                    {% if order.status == 'Pending' %}
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">Pending</span>
+                                    {% elif order.status == 'Processing' %}
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">Processing</span>
+                                    {% elif order.status == 'Shipped' %}
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 shadow-[0_0_10px_rgba(79,70,229,0.3)]">Shipped</span>
+                                    {% elif order.status == 'Delivered' %}
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">Delivered</span>
+                                    {% elif order.status == 'Cancelled' %}
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30">Cancelled</span>
+                                    {% else %}
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-gray-500/20 text-gray-400 border border-gray-500/30">{{ order.status }}</span>
+                                    {% endif %}
+                                    <a href="{% url 'order_detail' order.id %}" class="text-sm text-indigo-400 hover:text-indigo-300 underline">View Details</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-8">
+                            <i class="fa-solid fa-box-open text-4xl text-gray-500 mb-3"></i>
+                            <p class="text-gray-400">You haven't placed any orders yet.</p>
+                            <a href="{% url 'home' %}" class="inline-block mt-4 px-6 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg font-semibold transition">Start Shopping</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}

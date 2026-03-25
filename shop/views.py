@@ -75,5 +75,23 @@ def logout_view(request):
 def reset_password(request):
     pass
 
+from orders.models import Order
+
 def test(request):
     return render(request, 'test.html')
+
+@login_required(login_url='login')
+def profile_view(request):
+    user = request.user
+    orders = Order.objects.filter(user=user).order_by('-created_at')
+    addresses = user.addresses.all()
+    return render(request, 'auth/profile.html', {
+        'user': user,
+        'orders': orders,
+        'addresses': addresses
+    })
+
+@login_required(login_url='login')
+def order_detail_view(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'auth/order_detail.html', {'order': order})

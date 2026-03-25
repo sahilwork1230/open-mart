@@ -9,15 +9,15 @@ Home
 <section class="min-h-screen text-white bg-gradient-to-r from-black to-slate-900 mt-[80px]">
     <div class=" mb-2
 ">
-        <div class=" relative">
-            <img class="h-full w-full opacity-[45%] transition-all update"
+        <div class=" relative w-full h-[60vh] md:h-auto overflow-hidden">
+            <img class="h-full w-full object-cover md:object-fill opacity-[45%] transition-all update"
                 src="{% static 'images/banner/hero_image.webp' %}" alt="hero image">
-            <div class="absolute top-[50%] left-[120px] flex flex-col gap-5 hero">
-                <h1 id="move" class="font-bogle font-bold lg:text-8xl text-indigo-300 uppercase "
-                    style="line-height: 100px;">
-                    Discover Toys That <br> Spark Creativity
+            <div class="absolute top-1/2 -translate-y-1/2 left-4 md:left-[60px] lg:left-[120px] flex flex-col gap-3 md:gap-5 hero w-[90%] md:w-auto">
+                <h1 id="move" class="font-bogle font-bold text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-indigo-300 uppercase leading-tight md:leading-none"
+                    style="line-height: 1.1;">
+                    Discover Toys That <br class="hidden sm:block"> Spark Creativity
                 </h1>
-                <p id="move1" class="lg:text-3xl text-gray-300">From action figures to creative playsets — explore toys
+                <p id="move1" class="text-base sm:text-lg md:text-2xl lg:text-3xl text-gray-300 max-w-[90%]">From action figures to creative playsets — explore toys
                     that inspire adventure
                 </p>
 
@@ -30,7 +30,7 @@ Home
 
     <section class="min-h-screen bg-gradient-to-r from-slate-900 to-black overflow-hidden py-20 px-4">
 
-        <h1 class="w-full text-center mt-8 lg:text-8xl"><span
+        <h1 class="w-full text-center mt-8 text-4xl md:text-6xl lg:text-8xl"><span
                 class="text-red-700 border-b border-white uppercase">Featured</span>
             <span class="border-t border-red-700 uppercase">Products</span>
         </h1>
@@ -56,40 +56,34 @@ Home
 
 
                 <div
-                    class="panel panel-left w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-8 relative">
+                    class="panel panel-left w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-6 md:p-8 relative">
                     <img src="{% static 'images/LittlePeople.png' %}" alt="Featured Toys Placeholder"
-                        class="w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
+                        class="w-3/4 md:w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
                         style="transform: translateZ(30px);">
                 </div>
 
                 <a href="{% url 'home' %}"
-                    class="explore-btn flex flex-col items-center justify-center bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-8 px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
-                    <span>E</span>
-                    <span class="my-[2px]">X</span>
-                    <span class="my-[2px]">P</span>
-                    <span class="my-[2px]">L</span>
-                    <span class="my-[2px]">O</span>
-                    <span class="my-[2px]">R</span>
-                    <span>E</span>
+                    class="explore-btn flex md:flex-col flex-row items-center justify-center bg-gradient-to-r md:bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-4 px-8 md:py-8 md:px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-[50%] md:top-auto left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
+                    <span>E</span><span class="md:my-[2px]">X</span><span class="md:my-[2px]">P</span><span class="md:my-[2px]">L</span><span class="md:my-[2px]">O</span><span class="md:my-[2px]">R</span><span>E</span>
                 </a>
 
 
                 <div
-                    class="panel panel-right w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-10 md:p-14 relative overflow-hidden">
+                    class="panel panel-right w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:p-14 relative overflow-hidden">
 
                     <div
                         class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">
                     </div>
 
-                    <div class="relative z-10 h-full flex flex-col justify-center items-start pl-2">
-                        <h2 class="font-black italic text-[3rem] md:text-[3.5rem] leading-[1.05] text-white mb-10 uppercase font-sans tracking-tight"
+                    <div class="relative z-10 h-full flex flex-col justify-center items-start pl-0 md:pl-2">
+                        <h2 class="font-black italic text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] leading-[1.05] text-white mb-6 md:mb-10 uppercase font-sans tracking-tight"
                             style="transform: skewX(-8deg);">
                             BIG ADVENTURES<br>FOR LITTLE HANDS!
                         </h2>
 
                         <p
-                            class="text-white/95 text-[1.1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-[320px] font-sans">
-                            Bring their favorite worlds to life<br>with the iconic Fisher-Price Little People collection<br>Perfectly sized for small hands<br>to grasp and move.
+                            class="text-white/95 text-[1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-full md:max-w-[320px] font-sans">
+                            Bring their favorite worlds to life<br class="hidden md:block">with the iconic Fisher-Price Little People collection.<br class="hidden md:block">Perfectly sized for small hands<br class="hidden md:block">to grasp and move.
                         </p>
                     </div>
                 </div>
@@ -100,42 +94,36 @@ Home
 
 
                 <div
-                    class="panel panel-left w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-8 relative">
+                    class="panel panel-left w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-6 md:p-8 relative">
                     <img src="{% static 'images/kid-toys.png' %}" alt="Featured Toys Placeholder"
-                        class="w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
+                        class="w-3/4 md:w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
                         style="transform: translateZ(30px);">
                 </div>
 
-                <button
-                    class="explore-btn flex flex-col items-center justify-center bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-8 px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
-                    <span>E</span>
-                    <span class="my-[2px]">X</span>
-                    <span class="my-[2px]">P</span>
-                    <span class="my-[2px]">L</span>
-                    <span class="my-[2px]">O</span>
-                    <span class="my-[2px]">R</span>
-                    <span>E</span>
-                </button>
+                <a href="{% url 'home' %}"
+                    class="explore-btn flex md:flex-col flex-row items-center justify-center bg-gradient-to-r md:bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-4 px-8 md:py-8 md:px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-[50%] md:top-auto left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
+                    <span>E</span><span class="md:my-[2px]">X</span><span class="md:my-[2px]">P</span><span class="md:my-[2px]">L</span><span class="md:my-[2px]">O</span><span class="md:my-[2px]">R</span><span>E</span>
+                </a>
 
 
                 <div
-                    class="panel panel-right w-[90%] md:w-[450px] h-[550px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-10 md:p-14 relative overflow-hidden">
+                    class="panel panel-right w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:p-14 relative overflow-hidden">
 
                     <div
                         class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">
                     </div>
 
-                    <div class="relative z-10 h-full flex flex-col justify-center items-start pl-2">
-                        <h2 class="font-black italic text-[3rem] md:text-[3.5rem] leading-[1.05] text-white mb-10 uppercase font-sans tracking-tight"
+                    <div class="relative z-10 h-full flex flex-col justify-center items-start pl-0 md:pl-2">
+                        <h2 class="font-black italic text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] leading-[1.05] text-white mb-6 md:mb-10 uppercase font-sans tracking-tight"
                             style="transform: skewX(-8deg);">
                             UNLEASH THE<br>HERO WITHIN !
                         </h2>
 
                         <p
-                            class="text-white/95 text-[1.1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-[320px] font-sans">
-                            Meet your little one's new<br>best friend. Our ultra-soft<br>plush collection
-                            features<br>everything from magical<br>unicorns to classic bears, all<br>designed with the
-                            gentlest<br>fabrics for endless hugs.
+                            class="text-white/95 text-[1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-full md:max-w-[320px] font-sans">
+                            Meet your little one's new<br class="hidden md:block">best friend. Our ultra-soft<br class="hidden md:block">plush collection
+                            features<br class="hidden md:block">everything from magical<br class="hidden md:block">unicorns to classic bears, all<br class="hidden md:block">designed with the
+                            gentlest<br class="hidden md:block">fabrics for endless hugs.
                         </p>
                     </div>
                 </div>

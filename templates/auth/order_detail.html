@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Order #{{ order.id }}{% endblock %}
+{% block content %}
+<section class="min-h-screen pt-[120px] text-white bg-gradient-to-b from-[#1B1F3B] via-[#2C2F4A] to-[#0B0D16]">
+    <div class="max-w-[1200px] mx-auto px-6 pb-20">
+        <div class="flex items-center gap-4 mb-10">
+            <a href="{% url 'profile' %}" class="text-indigo-400 hover:text-indigo-300 transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+            </a>
+            <h1 class="text-4xl font-bold">Order Details</h1>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Order Meta Info -->
+            <div class="col-span-1 md:col-span-2 space-y-6">
+                <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/5">
+                    <div class="flex justify-between items-start border-b border-white/10 pb-4 mb-4">
+                        <div>
+                            <h2 class="text-3xl font-bold">Order #{{ order.id }}</h2>
+                            <p class="text-gray-400 mt-2">Placed on <span class="text-white">{{ order.created_at|date:"M d, Y, h:i A" }}</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-bold text-white">Total: <span class="text-indigo-300">₹{{ order.total_price }}</span></p>
+                            <span class="inline-block mt-3 px-4 py-1 rounded-full text-sm font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 uppercase tracking-widest shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                                {{ order.status }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold text-xl mb-4">Items ({{ order.items.count }})</h3>
+                        <div class="space-y-4">
+                        {% for item in order.items.all %}
+                            <div class="flex justify-between items-center bg-black/30 p-5 rounded-lg border border-white/10 hover:border-indigo-500/30 transition shadow-md">
+                                <div>
+                                    <p class="font-bold text-xl text-white">{{ item.product_name }}</p>
+                                    <p class="text-md text-gray-400 mt-1">Qty: <span class="text-white font-medium">{{ item.quantity }}</span> × ₹{{ item.price }}</p>
+                                </div>
+                                <p class="font-bold text-xl text-indigo-300">₹{{ item.subtotal }}</p>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping & Tracking Info -->
+            <div class="col-span-1 space-y-6">
+                <!-- Tracking -->
+                <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/5 h-max">
+                    <h3 class="text-xl font-bold mb-4 border-b border-white/10 pb-3">Tracking Status</h3>
+                    {% if order.tracking_number %}
+                        <div class="p-5 bg-indigo-900/40 rounded-lg border border-indigo-500/40 mb-2 text-center shadow-[0_0_20px_rgba(79,70,229,0.2)]">
+                            <p class="text-xs text-indigo-300 mb-2 tracking-widest font-bold">TRACKING NUMBER</p>
+                            <p class="font-mono text-2xl font-bold text-indigo-100">{{ order.tracking_number }}</p>
+                        </div>
+                        <p class="text-sm text-gray-400 text-center mt-3">Use this number to track your package on the courier's website.</p>
+                    {% else %}
+                        <div class="text-center py-6">
+                            <i class="fa-solid fa-truck-fast text-3xl text-gray-500 mb-3 block"></i>
+                            <p class="text-gray-400 text-sm">Tracking information is not available yet. We'll update this once your order ships.</p>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Address -->
+                <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/5 h-max">
+                    <h3 class="text-xl font-bold mb-4 border-b border-white/10 pb-3">Shipping Address</h3>
+                    {% if order.address %}
+                        <div class="p-5 bg-black/30 rounded-lg border border-white/10">
+                            <p class="font-bold text-lg text-white mb-1">{{ order.address.name }}</p>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-1">{{ order.address.full_address }}, {{ order.address.locality }}</p>
+                            <p class="text-white/80 font-medium text-sm">{{ order.address.city }}, {{ order.address.state }} - {{ order.address.pincode }}</p>
+                            <div class="mt-4 pt-4 border-t border-white/10 flex items-center gap-2 text-gray-300">
+                                <i class="fa-solid fa-phone text-sm"></i> <span class="font-mono font-medium">{{ order.address.phone_number }}</span>
+                            </div>
+                        </div>
+                    {% else %}
+                        <!-- Fallback to snapshot if address was deleted -->
+                        <div class="p-5 bg-black/30 rounded-lg border border-white/10">
+                            <p class="text-gray-400 whitespace-pre-line leading-relaxed text-sm">{{ order.address_snapshot }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

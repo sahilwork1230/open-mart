@@ -72,6 +72,7 @@ def place_order(request):
         total_price = cart.total_price(),
         is_paid = True,
     )
+    print(new_order_instance.user)
     
     # Copy cart items in Order object
     for item in cart.items.all():
