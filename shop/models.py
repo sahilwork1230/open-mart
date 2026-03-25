@@ -23,6 +23,8 @@ class Product(models.Model):
     long_description = models.TextField(default=None)
     price = models.FloatField()
     image = models.ImageField(upload_to='media')
+    stock = models.PositiveIntegerField(default=0)
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

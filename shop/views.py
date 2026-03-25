@@ -7,14 +7,23 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 
+from django.template.loader import get_template
+from django.template import TemplateDoesNotExist
+
 def home(request):
     return render(request, 'index.html')
 
 def product_view(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
-
     products = category.products.all()
-    return render(request, f'products/{category_slug}.html', {"products": products})
+    
+    template_name = f'products/{category_slug}.html'
+    try:
+        get_template(template_name)
+    except TemplateDoesNotExist:
+        template_name = 'products/category.html'
+        
+    return render(request, template_name, {"products": products, "category": category})
 
 def product_detail(request, product_title, product_id):
     product = get_object_or_404(Product, id = product_id)
