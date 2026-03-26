@@ -6,7 +6,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=120, unique=True)
+    heading = models.TextField(blank=True)
     description = models.TextField(blank=True)
+    category_image = models.ImageField(upload_to='media/categories')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

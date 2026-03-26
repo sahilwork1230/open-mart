@@ -28,14 +28,14 @@ Home
 
 
 
-    <section class="min-h-screen bg-gradient-to-r from-slate-900 to-black overflow-hidden py-20 px-4">
+    <section class="min-h-screen bg-gradient-to-r from-slate-900 to-black overflow-hidden py-20 px-4 relative">
 
-        <h1 class="w-full text-center mt-8 text-4xl md:text-6xl lg:text-8xl"><span
-                class="text-red-700 border-b border-white uppercase">Featured</span>
-            <span class="border-t border-red-700 uppercase">Products</span>
+        <h1 class="w-full flex flex-col md:flex-row items-center justify-center mt-8 text-4xl md:text-6xl lg:text-8xl gap-2 md:gap-4">
+            <span class="text-red-700 border-b-2 border-white uppercase pb-1 leading-none">Featured</span>
+            <span class="border-t-2 border-red-700 uppercase pt-1 leading-none">Products</span>
         </h1>
         <!-- train is the slide container that will control the sliding effect -->
-        <div class="train flex items-center justify-center relative">
+        <div class="train flex items-center justify-center">
             <!-- following are the slider buttons -->
             <div class="slider-buttons">
                 <button class="left">
@@ -50,13 +50,13 @@ Home
                 </button>
 
             </div>
-            <!-- a list of slides where only one slide will be visible at a time -->
+
             <div
-                class="category-showcase-container relative w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-[100px] perspective-container mx-auto">
+                class="category-showcase-container relative w-full max-w-[1240px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 lg:gap-[100px] perspective-container mx-auto px-4">
 
 
                 <div
-                    class="panel panel-left w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-6 md:p-8 relative">
+                    class="panel panel-left w-[90%] md:w-[42%] lg:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-6 md:p-8 relative">
                     <img src="{% static 'images/LittlePeople.png' %}" alt="Featured Toys Placeholder"
                         class="w-3/4 md:w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
                         style="transform: translateZ(30px);">
@@ -69,7 +69,7 @@ Home
 
 
                 <div
-                    class="panel panel-right w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:p-14 relative overflow-hidden">
+                    class="panel panel-right w-[90%] md:w-[42%] lg:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:p-14 relative overflow-hidden">
 
                     <div
                         class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">
@@ -89,12 +89,15 @@ Home
                 </div>
 
             </div>
+            {% for category in categories %}
+                
+            {% endfor %}
             <div
-                class="category-showcase-container relative w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-[100px] perspective-container mx-auto">
+                class="category-showcase-container relative w-full max-w-[1240px] flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 lg:gap-[100px] perspective-container mx-auto px-4">
 
 
                 <div
-                    class="panel panel-left w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-6 md:p-8 relative">
+                    class="panel panel-left w-[90%] md:w-[42%] lg:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-br from-[#500000] via-[#200000] to-black rounded-sm shadow-2xl flex items-center justify-center p-6 md:p-8 relative">
                     <img src="{% static 'images/kid-toys.png' %}" alt="Featured Toys Placeholder"
                         class="w-3/4 md:w-full h-auto object-contain z-10 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)] mix-blend-lighten"
                         style="transform: translateZ(30px);">
@@ -107,7 +110,7 @@ Home
 
 
                 <div
-                    class="panel panel-right w-[90%] md:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:p-14 relative overflow-hidden">
+                    class="panel panel-right w-[90%] md:w-[42%] lg:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:p-14 relative overflow-hidden">
 
                     <div
                         class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">

@@ -11,7 +11,8 @@ from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 
 def home(request):
-    return render(request, 'index.html')
+    categories = Category.objects.all()
+    return render(request, 'index.html', {'categories':categories})
 
 def product_view(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
@@ -104,3 +105,7 @@ def profile_view(request):
 def order_detail_view(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     return render(request, 'auth/order_detail.html', {'order': order})
+
+
+def product_details(request, slug):
+    pass

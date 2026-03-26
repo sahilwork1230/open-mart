@@ -38,16 +38,16 @@
                 </a>
 
             </div>
-            <ul id="navlinks" class="flex items-center justify-center md:gap-10 3xl:gap-20 ">
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class=""
-                        href="{% url 'product' 'iphone' %}">iPhone</a></li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'macbook' %}">Mac</a></li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'ipad' %}">iPad</a></li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'watch' %}">Watch</a>
+            <ul id="navlinks" class="flex items-center justify-center md:gap-10 3xl:gap-10 ">
+                <!-- <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'macbook' %}">Best Sellers</a></li> -->
+                <!-- <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'ipad' %}">Age</a></li> -->
+                <!-- <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'watch' %}">New Arrivals</a> -->
                 </li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Airpods</a></li>
-                <!-- <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Propulsion</a></li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Composite</a></li> -->
+                <li class="animate-border hover:border-b hover:border-red-600 "><a class=""
+                        href="{% url 'product' 'shop-all' %}">Shop All</a></li>
+                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">New Arrivals</a></li>
+                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Best Sellers</a></li>
+                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Shop by Age</a></li>
             </ul>
             <div class=" flex items-center justify-center gap-8">
                 <a class="" href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}"><i class="fa-solid fa-user text-2xl"></i></a>
@@ -94,64 +94,93 @@
     {% block content %}
     {% endblock%}
 
-    <footer class=" bg-black text-white p-10">
-        <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2">
-            <div class="w-full pl-10">
-                <a class="flex" href="{% url 'home' %}">
-                    <span class="font-grover md:text-xl lg:text-4xl text-red-700">
-                        N
-                    </span><span class="font-grover md:text-xl lg:text-4xl">EXORA</span>
-                </a>
-
-            </div>
-            <div class=" flex flex-col items-center">
-                <!-- <img class="h-[80px] w-[150px] shadow-lg shadow-red-700/40" src="{% static 'images/logo.png' %}" alt=""> -->
-                <!-- <div class="w-full pl-10">
-                    <a class="flex" href="{% url 'home' %}">
-                        <span class="font-grover md:text-xl lg:text-4xl text-red-700">
-                            N
-                        </span><span class="font-grover md:text-xl lg:text-4xl">EXORA</span>
+    <footer class="bg-black text-white pt-16 pb-8">
+        <div class="max-w-[1600px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <!-- Brand & Info -->
+            <div class="space-y-6">
+                <div>
+                    <a class="flex items-center" href="{% url 'home' %}">
+                        <span class="font-grover text-3xl lg:text-4xl text-red-700">N</span>
+                        <span class="font-grover text-3xl lg:text-4xl">EXORA</span>
                     </a>
-
-                </div> -->
-                <div class="w-full grid md:grid-cols-3">
-                    <ul class=" p-10 flex flex-col gap-5">
-                        <li><a href="{}">Home</a></li>
-                        <li><a href="{}">About Us</a></li>
-                        <li><a href="{}">Services</a></li>
-                        <li><a href="{}">History</a></li>
-                        <li class="border-r border-red-700"><a href="{}">Partner Brands</a></li>
-                    </ul>
-
-                    <ul class=" p-10 flex flex-col gap-5">
-                        <li><a href="{}">Media</a></li>
-                        <li><a href="{}">Jobs</a></li>
-                        <li><a href="{}">Privacy Policy</a></li>
-                        <li><a href="{}">Code of Cunduct</a></li>
-                        <li class="border-r border-red-700"><a href="{}">Partner Brands</a></li>
-                    </ul>
-                    <ul class=" p-10 flex flex-col gap-5">
-                        <li><a href="{}">Media</a></li>
-                        <li><a href="{}">Jobs</a></li>
-                        <li><a href="{}">Privacy Policy</a></li>
-                        <li><a href="{}">Code of Cunduct</a></li>
-                        <li class="border-r border-red-700"><a href="{}">Partner Brands</a></li>
-                    </ul>
-                    <ul class=" p-10 flex flex-col gap-5">
-                        <li><a href="{}">Media</a></li>
-                        <li><a href="{}">Jobs</a></li>
-                        <li><a href="{}">Privacy Policy</a></li>
-                        <li><a href="{}">Code of Cunduct</a></li>
-                        <li class="border-r border-red-700"><a href="{}">Partner Brands</a></li>
-                    </ul>
                 </div>
-
+                <p class="text-gray-400 text-[17px] leading-relaxed max-w-xs">
+                    Bringing joy and imagination to every child. Your premium destination for authentic, safe, and high-quality toys that inspire creativity and fun.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                        <i class="fa-brands fa-pinterest"></i>
+                    </a>
+                </div>
             </div>
-            <div>
 
+            <!-- Shop Categories -->
+            <div>
+                <h3 class="font-bold text-[20px] mb-6 uppercase tracking-wider text-red-600">Shop</h3>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><a href="{% url 'product' 'shop-all' %}" class="hover:text-white transition-colors">Shop All</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Action Figures</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Dolls & Playsets</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Board Games</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Educational Toys</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Outdoor Play</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div>
+                <h3 class="font-bold text-[20px] mb-6 uppercase tracking-wider text-red-600">Support</h3>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Shipping & Delivery</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Returns & Refunds</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Order Tracking</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Gift Cards</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h3 class="font-bold text-[20px] mb-6 uppercase tracking-wider text-red-600">Join the Fun</h3>
+                <p class="text-gray-400 text-[18px] mb-6">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                <form class="flex flex-col gap-3">
+                    <input type="email" placeholder="Your Email Address" class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg focus:outline-none focus:border-red-700 transition-colors text-sm">
+                    <button type="button" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 rounded-lg transition-colors text-sm uppercase tracking-widest">
+                        Subscribe
+                    </button>
+                </form>
             </div>
         </div>
-        <div class=" w-full text-center">© 2026 Nexora | All rights reserved.</div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-zinc-900 pt-8 mt-12 px-6">
+            <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-gray-500 text-md">
+                    © 2026 Nexora Toys. All rights reserved.
+                </div>
+                <div class="flex gap-6 text-gray-500 text-md">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Use</a>
+                    <a href="#" class="hover:text-white">Cookies Policy</a>
+                </div>
+                <div class="flex gap-4 text-4xl text-zinc-800">
+                    <i class="fa-brands fa-cc-visa hover:text-gray-400 transition-colors cursor-pointer"></i>
+                    <i class="fa-brands fa-cc-mastercard hover:text-gray-400 transition-colors cursor-pointer"></i>
+                    <i class="fa-brands fa-cc-paypal hover:text-gray-400 transition-colors cursor-pointer"></i>
+                    <i class="fa-brands fa-cc-apple-pay hover:text-gray-400 transition-colors cursor-pointer"></i>
+                </div>
+            </div>
+        </div>
     </footer>
 
 
