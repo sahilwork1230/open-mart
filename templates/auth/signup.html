@@ -19,7 +19,7 @@ Sign Up |
         </div>
         <form class="flex flex-col items-center gap-8 " action="" method="POST">
             {% csrf_token %}
-            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+            <!-- <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
                 placeholder="First Name" type="text" name="first_name">
             <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
                 placeholder="Last Name" type="text" name="last_name">
@@ -30,8 +30,18 @@ Sign Up |
             <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
                 placeholder="Password" type="password" name="password">
             <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
-                placeholder="Confirm Password" type="text" name="confirm_password">
+                placeholder="Confirm Password" type="text" name="confirm_password"> -->
 
+            {% for field in form %}
+            {{field.errors}}
+            <input 
+                class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
+                name="{{field.name}}"
+                type="{{field.field.widget.field_type}}"
+                placeholder="{{field.label}}"
+                value="{{ field.value|default:'' }}"
+            >
+            {% endfor %}
             <button type="submit"
                 class="w-[280px] p-2 bg-[#9C0000] rounded-md hover:shadow-lg hover:shadow-red-800/60"><span
                     class="text-[#FFDBDB] md:text-lg lg:text-xl">Sign Up</span></button>

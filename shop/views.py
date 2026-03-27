@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 
@@ -51,15 +51,13 @@ def signup_view(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get("email")
-            if User.objects.filter(email=email).exists():
-                raise ValidationError("A user with this email already exists!")
             user = form.save(commit=False)
             user.set_password(form.cleaned_data["password"])
             user.save()
 
             return redirect('/login/')
-    form = SignupForm()
+    else:
+        form = SignupForm()
     return render(request, 'auth/signup.html', {'form':form})
             
 
