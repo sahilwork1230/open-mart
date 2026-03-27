@@ -1363,6 +1363,14 @@ input:where([type='file']):focus {
   white-space: pre-line;
 }
 
+.text-wrap {
+  text-wrap: wrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1397,10 +1405,6 @@ input:where([type='file']):focus {
 
 .border {
   border-width: 1px;
-}
-
-.border-2 {
-  border-width: 2px;
 }
 
 .border-b {
@@ -1473,11 +1477,6 @@ input:where([type='file']):focus {
   border-color: rgb(239 68 68 / 0.5);
 }
 
-.border-red-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(220 38 38 / var(--tw-border-opacity, 1));
-}
-
 .border-red-700 {
   --tw-border-opacity: 1;
   border-color: rgb(185 28 28 / var(--tw-border-opacity, 1));
@@ -1521,11 +1520,6 @@ input:where([type='file']):focus {
 .border-zinc-900 {
   --tw-border-opacity: 1;
   border-color: rgb(24 24 27 / var(--tw-border-opacity, 1));
-}
-
-.border-green-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(74 222 128 / var(--tw-border-opacity, 1));
 }
 
 .bg-\[\#8E8B8B\] {
@@ -2081,6 +2075,10 @@ input:where([type='file']):focus {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[1\.8rem\] {
+  font-size: 1.8rem;
 }
 
 .font-black {
@@ -2698,6 +2696,10 @@ input:where([type='file']):focus {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
+
+  .sm\:text-\[2\.2rem\] {
+    font-size: 2.2rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2760,6 +2762,18 @@ input:where([type='file']):focus {
 
   .md\:max-w-\[320px\] {
     max-width: 320px;
+  }
+
+  .md\:max-w-\[15ch\] {
+    max-width: 15ch;
+  }
+
+  .md\:max-w-\[25ch\] {
+    max-width: 25ch;
+  }
+
+  .md\:max-w-\[12ch\] {
+    max-width: 12ch;
   }
 
   .md\:translate-x-0 {
@@ -2855,8 +2869,21 @@ input:where([type='file']):focus {
     padding-bottom: 2rem;
   }
 
+  .md\:py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
   .md\:pl-2 {
     padding-left: 0.5rem;
+  }
+
+  .md\:pl-12 {
+    padding-left: 3rem;
+  }
+
+  .md\:pr-6 {
+    padding-right: 1.5rem;
   }
 
   .md\:text-2xl {
@@ -2885,6 +2912,10 @@ input:where([type='file']):focus {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-\[2rem\] {
+    font-size: 2rem;
   }
 
   .md\:leading-none {
@@ -2935,6 +2966,10 @@ input:where([type='file']):focus {
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:text-\[2\.8rem\] {
+    font-size: 2.8rem;
   }
 }
 

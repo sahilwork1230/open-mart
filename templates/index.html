@@ -105,7 +105,7 @@ Home
                         style="transform: translateZ(30px);">
                 </div>
 
-                <a href="{% url 'product' 'kid-toys' %}"
+                <a href="{% url 'product' category.slug %}"
                     class="explore-btn flex md:flex-col flex-row items-center justify-center bg-gradient-to-r md:bg-gradient-to-b from-[#8B0000] via-[#4B0082] to-[#00008B] text-white font-bold text-[1.4rem] py-4 px-8 md:py-8 md:px-[1.1rem] rounded-md shadow-[0_0_40px_rgba(75,0,130,0.6)] z-20 mx-2 tracking-widest transition-transform hover:scale-105 hover:shadow-[0_0_50px_rgba(75,0,130,0.8)] cursor-pointer absolute md:static top-[50%] md:top-auto left-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 text-shadow-glow">
                     <span>E</span><span class="md:my-[2px]">X</span><span class="md:my-[2px]">P</span><span
                         class="md:my-[2px]">L</span><span class="md:my-[2px]">O</span><span
@@ -114,26 +114,28 @@ Home
 
 
                 <div
-                    class="panel panel-right w-[90%] md:w-[42%] lg:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:p-14 relative overflow-hidden">
+                    class="panel panel-right w-[90%] md:w-[42%] lg:w-[450px] h-[400px] sm:h-[450px] md:h-[650px] bg-gradient-to-tl from-[#000022] via-[#05051a] to-[#1a1c3d] rounded-sm shadow-2xl flex flex-col justify-start p-8 md:py-14 md:pl-12 md:pr-6 relative overflow-hidden">
 
                     <div
                         class="absolute top-0 right-0 w-full h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none">
                     </div>
 
                     <div class="relative z-10 h-full flex flex-col justify-center items-start pl-0 md:pl-2">
-                        <h2 class="font-black italic text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] leading-[1.05] text-white mb-6 md:mb-10 uppercase font-sans tracking-tight"
-                            style="transform: skewX(-8deg);">
-                            UNLEASH THE<br>HERO WITHIN !
+                        <h2 class="font-black italic text-[1.8rem] sm:text-[2.2rem] md:text-[2rem] lg:text-[2.8rem] leading-[1.05] text-white mb-6 md:mb-10 uppercase font-sans tracking-tight md:max-w-[12ch] break-words"
+                            style="transform: skewX(-8deg); text-wrap: balance;">
+                            <!-- UNLEASH THE<br>HERO WITHIN ! -->
+                             {{category.heading|safe}}
                         </h2>
 
                         <p
-                            class="text-white/95 text-[1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-full md:max-w-[320px] font-sans">
-                            Meet your little one's new<br class="hidden md:block">best friend. Our ultra-soft<br
+                            class="text-white/95 text-[1rem] md:text-[1.2rem] font-medium leading-[1.6] max-w-full md:max-w-[25ch] font-sans">
+                            <!-- Meet your little one's new<br class="hidden md:block">best friend. Our ultra-soft<br
                                 class="hidden md:block">plush collection
                             features<br class="hidden md:block">everything from magical<br
                                 class="hidden md:block">unicorns to classic bears, all<br
                                 class="hidden md:block">designed with the
-                            gentlest<br class="hidden md:block">fabrics for endless hugs.
+                            gentlest<br class="hidden md:block">fabrics for endless hugs. -->
+                            {{category.description|safe}}
                         </p>
                     </div>
                 </div>
