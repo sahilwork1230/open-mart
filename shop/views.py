@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.conf import settings
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 
@@ -54,6 +55,17 @@ def signup_view(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data["password"])
             user.save()
+
+            # Welcome email sending logic
+            subject = "Signup Success"
+            mail_message = f"Greetings {user.first_name}! You have successfully registered with Nexora with your email {user.email}"
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email,]
+            try:
+                send_mail(subject, mail_message, email_from, recipient_list)
+            except Exception as e:
+                print(f"Failed to send mail: {e}")
+
 
             return redirect('/login/')
     else:
