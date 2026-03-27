@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from shop.models import Product
 from .models import Cart, CartItem
+from django.http import JsonResponse
 
 
 from django.contrib import messages
@@ -59,7 +60,6 @@ def increment_cart_item(request, item_id):
         messages.warning(request, f"Only {cart_item.product.stock} units of {cart_item.product.title} are available.")
     return redirect("cart_detail")
 
-
 @login_required
 def decrement_cart_item(request, item_id):
     cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
@@ -69,6 +69,27 @@ def decrement_cart_item(request, item_id):
     else:
         cart_item.delete()
     return redirect("cart_detail")
+
+# AJAX implmentation for cart quantity update
+def cart_update(request):
+    if request.method == 'POST':
+        item_id = request.POST.get("item_id")
+        action = request.POST.get("action")
+        cart_item = get_object_or_404(CartItem, id= item_id)
+        # product = cart_item.product
+        if action == 'increment':
+            cart_item.quantity += 1
+        if action == 'decrement':
+            cart_item.quantity -= 1
+        cart_item.save()
+        return JsonResponse({
+            "quantity": cart_item.quantity,
+            "total_price": cart_item.quantity * cart_item.product.price
+        })
+
+            
+
+
 
 
 

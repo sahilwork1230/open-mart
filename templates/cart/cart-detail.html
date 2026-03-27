@@ -8,20 +8,20 @@
         <h1 class="text-4xl mb-8">Your Cart</h1>
 
         {% if cart.items.all %}
-            <div class="space-y-6">
+        <div class="space-y-6">
 
-                {% for item in cart.items.all %}
-                <div class="flex justify-between items-center bg-white/10 p-6 rounded-xl">
-                    <div class="flex items-center gap-6">
-                        <div>
-                            <h2 class="text-xl">{{ item.product.title }}</h2>
-                            <p class="text-gray-400">
-                                ₹{{ item.price }} 
-                            </p>
-                        </div>
-                        
-                        <!-- Quantity Controls -->
-                        <div class="flex items-center bg-black/20 rounded-lg p-1 border border-white/10">
+            {% for item in cart.items.all %}
+            <div class="flex justify-between items-center bg-white/10 p-6 rounded-xl">
+                <div class="flex items-center gap-6">
+                    <div>
+                        <h2 class="text-xl">{{ item.product.title }}</h2>
+                        <p class="text-gray-400">
+                            ₹{{ item.price }}
+                        </p>
+                    </div>
+
+                    <!-- Increment/ Decrement buttons-->
+                    <!-- <div class="flex items-center bg-black/20 rounded-lg p-1 border border-white/10">
                             <a href="{% url 'decrement_cart_item' item.id %}" class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded transition">
                                 <i class="fa-solid fa-minus text-sm"></i>
                             </a>
@@ -29,46 +29,55 @@
                             <a href="{% url 'increment_cart_item' item.id %}" class="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded transition">
                                 <i class="fa-solid fa-plus text-sm"></i>
                             </a>
+                        </div> -->
+                    <div class="flex items-center bg-black/20 rounded-lg p-1 border border-white/10">
+                            <button class="updater w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded transition" id="inc" onclick="updateCart({{item.id}},'decrement')">
+                                <i class="fa-solid fa-minus text-sm"></i>
+                            </button>
+                            <span id="qty-{{item.id}}" class="w-10 text-center font-bold text-lg">{{item.quantity}}</span>
+                            <button class="updater w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded transition" id="dec" onclick="updateCart({{item.id}}, 'increment')">
+                                <i class="fa-solid fa-plus text-sm"></i>
+                            </button>
                         </div>
-                    </div>
+                </div>
 
-                    <div class="text-lg">
-                        ₹{{ item.subtotal }}
-                    </div>
+                <div class="text-lg">
+                    ₹{{ item.subtotal }}
+                </div>
 
-                    <a href="{% url 'remove_from_cart' item.id %}"
-                       class="text-red-400 hover:underline">
-                        Remove
+                <a href="{% url 'remove_from_cart' item.id %}" class="text-red-400 hover:underline">
+                    Remove
+                </a>
+            </div>
+            {% endfor %}
+
+            <!-- Cart Total -->
+            <div class="text-right text-2xl mt-8">
+                Total: ₹{{ cart.total_price }}
+            </div>
+
+            <!-- Checkout Section (Flipkart-style) -->
+            <div class="mt-10 flex justify-end">
+                <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl w-full md:w-[400px] text-right">
+                    <p class="text-gray-300 mb-2">
+                        Total Amount
+                    </p>
+                    <p class="text-3xl font-semibold mb-6">
+                        ₹{{ cart.total_price }}
+                    </p>
+
+                    <a href="{% url 'checkout' %}">
+                        <button
+                            class="w-full py-4 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300 transition">
+                            Proceed to Checkout
+                        </button>
                     </a>
                 </div>
-                {% endfor %}
-
-                <!-- Cart Total -->
-                <div class="text-right text-2xl mt-8">
-                    Total: ₹{{ cart.total_price }}
-                </div>
-
-                <!-- Checkout Section (Flipkart-style) -->
-                <div class="mt-10 flex justify-end">
-                    <div class="bg-white/10 backdrop-blur-lg p-6 rounded-xl w-full md:w-[400px] text-right">
-                        <p class="text-gray-300 mb-2">
-                            Total Amount
-                        </p>
-                        <p class="text-3xl font-semibold mb-6">
-                            ₹{{ cart.total_price }}
-                        </p>
-
-                        <a href="{% url 'checkout' %}">
-                            <button class="w-full py-4 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300 transition">
-                                Proceed to Checkout
-                            </button>
-                        </a>
-                    </div>
-                </div>
-
             </div>
+
+        </div>
         {% else %}
-            <p>Your cart is empty.</p>
+        <p>Your cart is empty.</p>
         {% endif %}
     </div>
 </section>
