@@ -50,25 +50,25 @@ def remove_from_cart(request, item_id):
     return redirect("cart_detail")
 
 
-@login_required
-def increment_cart_item(request, item_id):
-    cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
-    if cart_item.quantity < cart_item.product.stock:
-        cart_item.quantity += 1
-        cart_item.save()
-    else:
-        messages.warning(request, f"Only {cart_item.product.stock} units of {cart_item.product.title} are available.")
-    return redirect("cart_detail")
+# @login_required
+# def increment_cart_item(request, item_id):
+#     cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+#     if cart_item.quantity < cart_item.product.stock:
+#         cart_item.quantity += 1
+#         cart_item.save()
+#     else:
+#         messages.warning(request, f"Only {cart_item.product.stock} units of {cart_item.product.title} are available.")
+#     return redirect("cart_detail")
 
-@login_required
-def decrement_cart_item(request, item_id):
-    cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-    else:
-        cart_item.delete()
-    return redirect("cart_detail")
+# @login_required
+# def decrement_cart_item(request, item_id):
+#     cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+#     if cart_item.quantity > 1:
+#         cart_item.quantity -= 1
+#         cart_item.save()
+#     else:
+#         cart_item.delete()
+#     return redirect("cart_detail")
 
 # AJAX implmentation for cart quantity update
 def cart_update(request):

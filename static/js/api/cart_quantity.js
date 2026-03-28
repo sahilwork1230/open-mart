@@ -20,9 +20,9 @@ function updateCart(itemId, action){
             return;
         }
         document.getElementById(`qty-${itemId}`).innerText = data.quantity;
-        document.getElementById(`${itemId}`).innerText = data.subtotal;
+        document.getElementById(`${itemId}`).innerText = `₹${data.subtotal}`;
         document.getElementById('total').innerText = `Total: ₹${data.total}`;
-        document.getElementById("total-amount").innerText = data.total;
+        document.getElementById("total-amount").innerText = `₹${data.total}`;
     })
 }
 function getCSRFToken() {
