@@ -10,9 +10,19 @@ function updateCart(itemId, action){
         },
         body: `item_id=${itemId}&action=${action}`
     })
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
+
+        if (data.deleted) {
+            document.getElementById(`cart-item-${itemId}`).remove();
+            document.getElementById('total').innerText = `Total: ₹${data.total}`;
+            document.getElementById("total-amount").innerText = data.total;
+            return;
+        }
         document.getElementById(`qty-${itemId}`).innerText = data.quantity;
+        document.getElementById(`${itemId}`).innerText = data.subtotal;
+        document.getElementById('total').innerText = `Total: ₹${data.total}`;
+        document.getElementById("total-amount").innerText = data.total;
     })
 }
 function getCSRFToken() {

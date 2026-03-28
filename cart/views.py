@@ -75,17 +75,41 @@ def cart_update(request):
     if request.method == 'POST':
         item_id = request.POST.get("item_id")
         action = request.POST.get("action")
-        cart_item = get_object_or_404(CartItem, id= item_id)
-        # product = cart_item.product
+
+        cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+        cart = get_object_or_404(Cart, user=request.user)
+
         if action == 'increment':
             cart_item.quantity += 1
-        if action == 'decrement':
-            cart_item.quantity -= 1
-        cart_item.save()
-        return JsonResponse({
-            "quantity": cart_item.quantity,
-            "total_price": cart_item.quantity * cart_item.product.price
-        })
+            cart_item.save()
+
+            return JsonResponse({
+                "deleted": False,
+                "quantity": cart_item.quantity,
+                "subtotal": cart_item.subtotal(),
+                "total": cart.total_price(),
+            })
+
+        elif action == 'decrement':
+            if cart_item.quantity > 1:
+                cart_item.quantity -= 1
+                cart_item.save()
+
+                return JsonResponse({
+                    "deleted": False,
+                    "quantity": cart_item.quantity,
+                    "subtotal": cart_item.subtotal(),
+                    "total": cart.total_price(),
+                })
+            else:
+                cart_item.delete()
+
+                return JsonResponse({
+                    "deleted": True,
+                    "item_id": item_id,
+                    "total": cart.total_price(),
+                })
+        # cart_item.quantity * cart_item.product.price
 
             
 

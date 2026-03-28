@@ -11,7 +11,7 @@
         <div class="space-y-6">
 
             {% for item in cart.items.all %}
-            <div class="flex justify-between items-center bg-white/10 p-6 rounded-xl">
+            <div id="cart-item-{{item.id}}" class="flex justify-between items-center bg-white/10 p-6 rounded-xl">
                 <div class="flex items-center gap-6">
                     <div>
                         <h2 class="text-xl">{{ item.product.title }}</h2>
@@ -41,8 +41,9 @@
                         </div>
                 </div>
 
-                <div class="text-lg">
+                <div id="{{item.id}}" class="text-lg">
                     ₹{{ item.subtotal }}
+                     <!-- ₹{{total}} -->
                 </div>
 
                 <a href="{% url 'remove_from_cart' item.id %}" class="text-red-400 hover:underline">
@@ -52,8 +53,9 @@
             {% endfor %}
 
             <!-- Cart Total -->
-            <div class="text-right text-2xl mt-8">
+            <div id="total" class="text-right text-2xl mt-8">
                 Total: ₹{{ cart.total_price }}
+
             </div>
 
             <!-- Checkout Section (Flipkart-style) -->
@@ -62,8 +64,7 @@
                     <p class="text-gray-300 mb-2">
                         Total Amount
                     </p>
-                    <p class="text-3xl font-semibold mb-6">
-                        ₹{{ cart.total_price }}
+                    <p id="total-amount" class=" total-amount text-3xl font-semibold mb-6"> ₹{{cart.total_price}}
                     </p>
 
                     <a href="{% url 'checkout' %}">
