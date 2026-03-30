@@ -56,6 +56,9 @@ def signup_view(request):
             user.set_password(form.cleaned_data["password"])
             user.save()
 
+            from django.contrib import messages
+            messages.success(request, f"Welcome {user.first_name}! Your account has been created successfully.")
+
             # Welcome email sending logic
             subject = "Signup Success"
             mail_message = f"Greetings {user.first_name}! You have successfully registered with Nexora with your email {user.email}"
@@ -68,6 +71,12 @@ def signup_view(request):
 
 
             return redirect('/login/')
+        else:
+            # Send form errors as toast messages
+            from django.contrib import messages
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field.replace('_', ' ').title()}: {error}")
     else:
         form = SignupForm()
     return render(request, 'auth/signup.html', {'form':form})
@@ -88,9 +97,15 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 next_url = request.GET.get("next")
+                
+                from django.contrib import messages
+                messages.success(request, f"Welcome back, {user.username}!")
 
                 return redirect(next_url if next_url else "home")
-            form.add_error(None, "Invalid credentials")
+            
+            # form.add_error(None, "Invalid credentials")
+            from django.contrib import messages
+            messages.error(request, "Invalid credentials. Please check your username/email and password.")
 
     else:
         form = LoginForm()
@@ -100,9 +115,6 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
-
-def reset_password(request):
-    pass
 
 from orders.models import Order
 

@@ -56,7 +56,7 @@
         </div>
     </nav>
 
-    <!-- Message Notifications -->
+    <!-- 
     {% if messages %}
     <div class="fixed top-[100px] left-1/2 -translate-x-1/2 z-[60] w-full max-w-[600px] px-6 pointer-events-none">
         <div class="space-y-4">
@@ -89,7 +89,65 @@
             animation: bounce-short 2s ease-in-out infinite;
         }
     </style>
-    {% endif %}
+    {% endif %} 
+    -->
+
+    <div id="toast-container" class="fixed top-24 right-5 z-[100] flex flex-col gap-3 pointer-events-none">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="toast-item pointer-events-auto min-w-[300px] max-w-[450px] p-4 rounded-lg backdrop-blur-md border shadow-2xl flex items-start justify-between gap-4 transition-all duration-500 transform translate-x-full opacity-0
+                {% if message.tags == 'error' %}bg-red-950/40 border-red-500/30 text-red-200{% elif message.tags == 'success' %}bg-emerald-950/40 border-emerald-500/30 text-emerald-200{% elif message.tags == 'warning' %}bg-amber-950/40 border-amber-500/30 text-amber-200{% else %}bg-slate-900/60 border-slate-500/30 text-slate-200{% endif %}"
+                data-type="{{ message.tags }}">
+                <div class="flex items-start gap-4">
+                    <div class="mt-1">
+                        {% if message.tags == 'error' %}
+                            <i class="fa-solid fa-circle-xmark text-xl text-red-400"></i>
+                        {% elif message.tags == 'success' %}
+                            <i class="fa-solid fa-circle-check text-xl text-emerald-400"></i>
+                        {% elif message.tags == 'warning' %}
+                            <i class="fa-solid fa-triangle-exclamation text-xl text-amber-400"></i>
+                        {% else %}
+                            <i class="fa-solid fa-circle-info text-xl text-blue-400"></i>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm tracking-wide uppercase opacity-70 mb-1">
+                            {% if message.tags == 'error' %}Error{% elif message.tags == 'success' %}Success{% elif message.tags == 'warning' %}Warning{% else %}Notification{% endif %}
+                        </p>
+                        <p class="text-[15px] font-medium leading-relaxed">{{ message }}</p>
+                    </div>
+                </div>
+                <button onclick="dismissToast(this.parentElement)" class="mt-1 opacity-40 hover:opacity-100 transition-opacity">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <script>
+        function dismissToast(element) {
+            element.classList.add('translate-x-full', 'opacity-0');
+            setTimeout(() => {
+                element.remove();
+            }, 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const toasts = document.querySelectorAll('.toast-item');
+            toasts.forEach((toast, index) => {
+                setTimeout(() => {
+                    toast.classList.remove('translate-x-full', 'opacity-0');
+                }, index * 200 + 100);
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        dismissToast(toast);
+                    }
+                }, 6000 + (index * 200));
+            });
+        });
+    </script>
+
 
     {% block content %}
     {% endblock%}
