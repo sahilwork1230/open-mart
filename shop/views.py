@@ -59,7 +59,7 @@ def signup_view(request):
             from django.contrib import messages
             messages.success(request, f"Welcome {user.first_name}! Your account has been created successfully.")
 
-            # Welcome email sending logic
+            # send main
             subject = "Signup Success"
             mail_message = f"Greetings {user.first_name}! You have successfully registered with Nexora with your email {user.email}"
             email_from = settings.EMAIL_HOST_USER

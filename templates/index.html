@@ -319,32 +319,20 @@ Home
 
             const current = slides[currentSlide];
             const next = slides[newIndex];
-
-            // Prepare the next slide's starting position without triggering transition
             next.style.transition = 'none';
             next.classList.remove('slide-left', 'slide-right', 'active');
             next.classList.add(direction === 'next' ? 'slide-right' : 'slide-left');
-
-            // Force reflow
             void next.offsetWidth;
-
-            // Restore transition
             next.style.transition = '';
-
-            // Animate current slide away
             current.classList.remove('active');
             current.classList.add(direction === 'next' ? 'slide-left' : 'slide-right');
-
-            // Animate next slide in
             next.classList.remove('slide-left', 'slide-right');
             next.classList.add('active');
 
             currentSlide = newIndex;
-
-            // Unlock animating state after transition finishes
             setTimeout(() => {
                 isAnimating = false;
-            }, 600); // 600ms matches the CSS transition time
+            }, 600);
         }
 
         btnRight.addEventListener('click', () => {
@@ -357,42 +345,3 @@ Home
     });
 </script>
 {% endblock %}
-
-<!-- <div class="w-[1700px] mx-auto mt-10 grid md:grid-cols-4 gap-10 py-5">
-            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
-                <img class="h-full
-                    rounded-lg shadow-lg shadow-red-700/50
-                    " src="{% static '/images/featured-brand/drone.jpg' %}" alt="drone image">
-                <h2 class="lg:text-3xl text-red-700">Drones</h2>
-                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'product' 'drones' %}">
-                    <span >Explore!</span>
-                </a>
-            </div>
-            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
-                <img class="h-full
-                    rounded-lg shadow-lg shadow-red-700/50
-                    " src="{% static '/images/featured-brand/robot.jpg' %}" alt="drone image">
-                <h2 class="lg:text-3xl text-red-700">Robots</h2>
-                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'product' 'robots' %}">
-                    <span >Explore!</span>
-                </a>
-            </div>
-            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
-                <img class="h-full
-                    rounded-lg shadow-lg shadow-red-700/50
-                    " src="{% static '/images/featured-brand/cam.jpg' %}" alt="drone image">
-                <h2 class="lg:text-3xl text-red-700">Cameras</h2>
-                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'product' 'cam' %}">
-                    <span >Explore!</span>
-                </a>
-            </div>
-            <div class="flex flex-col items-center justify-center gap-3 h-[400px]">
-                <img class="h-full
-                    rounded-lg shadow-lg shadow-red-700/50
-                    " src="{% static '/images/featured-brand/spare-parts.jpg' %}" alt="drone image">
-                <h2 class="lg:text-3xl text-red-700">Spare Parts</h2>
-                <a class="shadow-lg shadow-red-700/50 px-10 py-3 bg-gray-800 text-white rounded-md hover:bg-slate-900 transition-all" href="{% url 'product' 'spare-parts' %}">
-                    <span >Explore!</span>
-                </a>
-            </div>
-        </div> -->
