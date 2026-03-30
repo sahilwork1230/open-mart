@@ -75,18 +75,27 @@ def signup_view(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            identifier = form.cleaned_data.get("username")
+            identifier = form.cleaned_data.get("identifier")
             password = form.cleaned_data.get("password")
+            print(identifier)
 
-            user = authenticate(username=identifier, password=password)
+            user = authenticate(request, username=identifier, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("home")
+                next_url = request.GET.get("next")
 
-    return render(request, 'auth/login.html')
+                return redirect(next_url if next_url else "home")
+            form.add_error(None, "Invalid credentials")
+
+    else:
+        form = LoginForm()
+
+    return render(request, 'auth/login.html',{"form": form})
 
 def logout_view(request):
     logout(request)

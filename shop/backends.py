@@ -4,13 +4,15 @@ from django.db.models import Q
 
 class UsernameOrEmailBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
-        try:
-            user = User.objects.get(
-                Q(username=username) | Q(email=username)
-            )
-        except User.DoesNotExist:
+        identifier = username
+        if not identifier or not password:
             return None
+        users = User.objects.filter(
+            Q(username = identifier) | Q(email = identifier)
+        )
 
-        if user.check_password(password):
+        user = users.first()
+        if user and user.check_password(password) and self.user_can_authenticate(user):
             return user
+
         return None

@@ -19,15 +19,13 @@ Login |
         </div>
         <form class="flex flex-col items-center gap-8 " action="" method="POST">
             {% csrf_token %}
-            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
-                placeholder="Enter username" type="username" name="username">
-            <p>OR</p>
-            <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
-                placeholder="Enter Email" type="Email" name="email">
+            <input type="text" name="identifier" placeholder="Enter username or email"
+                class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md">
             <input class="w-[280px] p-2 bg-[#D9D9D9] text-black rounded-md placeholder:text-[#8E8B8B]"
                 placeholder="Enter Password" type="password" name="password">
 
-            <button type="submit" class="w-[280px] p-2 bg-[#9C0000] rounded-md hover:shadow-lg hover:shadow-red-800/60"><span
+            <button type="submit"
+                class="w-[280px] p-2 bg-[#9C0000] rounded-md hover:shadow-lg hover:shadow-red-800/60"><span
                     class="text-[#FFDBDB] shadow sm:text-lg">Login</span></button>
         </form>
         <div class="w-[280px] text-end">

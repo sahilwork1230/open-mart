@@ -42,18 +42,22 @@ class SignupForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     #widget is only used when django forms are rendered on frontend
-    username = forms.CharField(required=False)
-    email = forms.EmailField(required=False)
+    # username = forms.CharField(required=False)
+    # email = forms.EmailField(required=False)
+    identifier = forms.CharField()
     password = forms.CharField()
 
     def clean(self):
         cleaned_data = super().clean()
-        username = cleaned_data.get("username")
-        email = cleaned_data.get("email")
-        if not username:
-            username = email
-        if not username and not email:
-            raise forms.ValidationError("A username or Email is required")
+        identifier = cleaned_data.get("identifier")
+        password = cleaned_data.get("password")
+        if not identifier or not password:
+            raise forms.ValidationError("Both fields are required!")
+        identifier = identifier.strip()
+        if "@" in identifier:
+            identifier = identifier.lower()
+        cleaned_data["identifier"] = identifier
+
         return cleaned_data
 
 
