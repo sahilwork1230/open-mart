@@ -25,31 +25,52 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0&icon_names=search" /> -->
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=chevron_forward" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=chevron_forward" />
 </head>
+<!-- px-3 py-6 -->
+
 <body class="font-iceland md:text-lg lg:text-xl overflow-x-hidden">
-    <nav class="bg-black px-3 py-6 text-white w-screen fixed top-0 z-50">
-        <div class="max-w-[1600px] mx-auto flex items-center md:justify-center md:gap-24 3xl:justify-between ">
-            <div class="w-[80px]">
+    <nav class="bg-black px-3 h-[80px] text-white w-screen fixed top-0 z-50 flex items-stretch
+    ">
+        <div
+            class="max-w-[1600px] relative mx-auto w-full flex items-center justify-between md:justify-center md:gap-24 3xl:justify-between ">
+            <div class="flex-1 flex justify-start sm:hidden relative">
+                <div class="absolute">
+                    <button id="hamburger" class="flex items-center justify-center ">
+                        <i class="fa-solid fa-bars text-xl hamburger"></i>
+                    </button>
+                </div>
+                <div class="absolute">
+                    <button id="close" class="flex items-center justify-center ">
+                        <i class="fa-solid fa-xmark hidden close"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- absolute left-1/2 -translate-x-1/2 w-fit sm:static sm:translate-x-0 this can also be used to center the logo -->
+            <div class="absolute left-1/2 -translate-x-1/2 w-fit sm:static sm:translate-x-0">
                 <a class="flex" href="{% url 'home' %}">
-                    <span class="font-grover md:text-xl lg:text-4xl text-red-700">
+                    <span class="font-grover text-2xl lg:text-4xl text-red-700 text-center">
                         N
-                    </span><span class="font-grover md:text-xl lg:text-4xl">EXORA</span>
+                    </span><span class="font-grover text-2xl lg:text-4xl">EXORA</span>
                 </a>
 
             </div>
-            <ul id="navlinks" class="flex items-center justify-center md:gap-10 3xl:gap-10 ">
-
-                </li>
+            <ul id="navlinks" class="hidden sm:flex items-center justify-center md:gap-8 3xl:gap-10 ">
                 <li class="animate-border hover:border-b hover:border-red-600 "><a class=""
                         href="{% url 'product' 'shop-all' %}">Shop All</a></li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'new-arrivals' %}">New Arrivals</a></li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="{% url 'product' 'best-sellers' %}">Best Sellers</a></li>
-                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Shop by Age</a></li>
+                <li class="animate-border hover:border-b hover:border-red-600 "><a class=""
+                        href="{% url 'product' 'new-arrivals' %}">New Arrivals</a></li>
+                <li class="animate-border hover:border-b hover:border-red-600 "><a class=""
+                        href="{% url 'product' 'best-sellers' %}">Best Sellers</a></li>
+                <li class="animate-border hover:border-b hover:border-red-600 "><a class="" href="#">Shop by Age</a>
+                </li>
             </ul>
-            <div class=" flex items-center justify-center gap-8">
-                <a class="" href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}"><i class="fa-solid fa-user text-2xl"></i></a>
-                <a href="{% url 'cart_detail' %}"><i class="fa-brands fa-opencart text-2xl"></i></a>
+            <div class=" flex items-center justify-center gap-4 md:gap-8">
+                <a class=""
+                    href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}"><i
+                        class="fa-solid fa-user text-xl md:text-2xl"></i></a>
+                <a href="{% url 'cart_detail' %}"><i class="fa-brands fa-opencart text-xl md:text-2xl"></i></a>
             </div>
         </div>
     </nav>
@@ -92,34 +113,36 @@
 
     <div id="toast-container" class="fixed top-24 right-5 z-[100] flex flex-col gap-3 pointer-events-none">
         {% if messages %}
-            {% for message in messages %}
-            <div class="toast-item pointer-events-auto min-w-[300px] max-w-[450px] p-4 rounded-lg backdrop-blur-md border shadow-2xl flex items-start justify-between gap-4 transition-all duration-500 transform translate-x-full opacity-0
+        {% for message in messages %}
+        <div class="toast-item pointer-events-auto min-w-[300px] max-w-[450px] p-4 rounded-lg backdrop-blur-md border shadow-2xl flex items-start justify-between gap-4 transition-all duration-500 transform translate-x-full opacity-0
                 {% if message.tags == 'error' %}bg-red-950/40 border-red-500/30 text-red-200{% elif message.tags == 'success' %}bg-emerald-950/40 border-emerald-500/30 text-emerald-200{% elif message.tags == 'warning' %}bg-amber-950/40 border-amber-500/30 text-amber-200{% else %}bg-slate-900/60 border-slate-500/30 text-slate-200{% endif %}"
-                data-type="{{ message.tags }}">
-                <div class="flex items-start gap-4">
-                    <div class="mt-1">
-                        {% if message.tags == 'error' %}
-                            <i class="fa-solid fa-circle-xmark text-xl text-red-400"></i>
-                        {% elif message.tags == 'success' %}
-                            <i class="fa-solid fa-circle-check text-xl text-emerald-400"></i>
-                        {% elif message.tags == 'warning' %}
-                            <i class="fa-solid fa-triangle-exclamation text-xl text-amber-400"></i>
-                        {% else %}
-                            <i class="fa-solid fa-circle-info text-xl text-blue-400"></i>
-                        {% endif %}
-                    </div>
-                    <div>
-                        <p class="font-bold text-sm tracking-wide uppercase opacity-70 mb-1">
-                            {% if message.tags == 'error' %}Error{% elif message.tags == 'success' %}Success{% elif message.tags == 'warning' %}Warning{% else %}Notification{% endif %}
-                        </p>
-                        <p class="text-[15px] font-medium leading-relaxed">{{ message }}</p>
-                    </div>
+            data-type="{{ message.tags }}">
+            <div class="flex items-start gap-4">
+                <div class="mt-1">
+                    {% if message.tags == 'error' %}
+                    <i class="fa-solid fa-circle-xmark text-xl text-red-400"></i>
+                    {% elif message.tags == 'success' %}
+                    <i class="fa-solid fa-circle-check text-xl text-emerald-400"></i>
+                    {% elif message.tags == 'warning' %}
+                    <i class="fa-solid fa-triangle-exclamation text-xl text-amber-400"></i>
+                    {% else %}
+                    <i class="fa-solid fa-circle-info text-xl text-blue-400"></i>
+                    {% endif %}
                 </div>
-                <button onclick="dismissToast(this.parentElement)" class="mt-1 opacity-40 hover:opacity-100 transition-opacity">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
+                <div>
+                    <p class="font-bold text-sm tracking-wide uppercase opacity-70 mb-1">
+                        {% if message.tags == 'error' %}Error{% elif message.tags == 'success' %}Success{% elif
+                        message.tags == 'warning' %}Warning{% else %}Notification{% endif %}
+                    </p>
+                    <p class="text-[15px] font-medium leading-relaxed">{{ message }}</p>
+                </div>
             </div>
-            {% endfor %}
+            <button onclick="dismissToast(this.parentElement)"
+                class="mt-1 opacity-40 hover:opacity-100 transition-opacity">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        {% endfor %}
         {% endif %}
     </div>
 
@@ -161,19 +184,24 @@
                     </a>
                 </div>
                 <p class="text-gray-400 text-[17px] leading-relaxed max-w-xs">
-                    Bringing joy and imagination to every child. Your premium destination for authentic, safe, and high-quality toys that inspire creativity and fun.
+                    Bringing joy and imagination to every child. Your premium destination for authentic, safe, and
+                    high-quality toys that inspire creativity and fun.
                 </p>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center hover:bg-red-700 transition-colors">
                         <i class="fa-brands fa-pinterest"></i>
                     </a>
                 </div>
@@ -183,7 +211,8 @@
             <div>
                 <h3 class="font-bold text-[20px] mb-6 uppercase tracking-wider text-red-600">Shop</h3>
                 <ul class="space-y-4 text-gray-400 text-sm">
-                    <li><a href="{% url 'product' 'shop-all' %}" class="hover:text-white transition-colors">Shop All</a></li>
+                    <li><a href="{% url 'product' 'shop-all' %}" class="hover:text-white transition-colors">Shop All</a>
+                    </li>
                     <li><a href="#" class="hover:text-white transition-colors">Action Figures</a></li>
                     <li><a href="#" class="hover:text-white transition-colors">Dolls & Playsets</a></li>
                     <li><a href="#" class="hover:text-white transition-colors">Board Games</a></li>
@@ -208,10 +237,13 @@
             <!-- Newsletter -->
             <div>
                 <h3 class="font-bold text-[20px] mb-6 uppercase tracking-wider text-red-600">Join the Fun</h3>
-                <p class="text-gray-400 text-[18px] mb-6">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                <p class="text-gray-400 text-[18px] mb-6">Subscribe to get special offers, free giveaways, and
+                    once-in-a-lifetime deals.</p>
                 <form class="flex flex-col gap-3">
-                    <input type="email" placeholder="Your Email Address" class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg focus:outline-none focus:border-red-700 transition-colors text-sm">
-                    <button type="button" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 rounded-lg transition-colors text-sm uppercase tracking-widest">
+                    <input type="email" placeholder="Your Email Address"
+                        class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg focus:outline-none focus:border-red-700 transition-colors text-sm">
+                    <button type="button"
+                        class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 rounded-lg transition-colors text-sm uppercase tracking-widest">
                         Subscribe
                     </button>
                 </form>
@@ -247,6 +279,7 @@
     <script src="{% static 'js/gsap.js' %}"></script>
     <script src="{% static 'js/finalAddress.js' %}"></script>
     <script src="{% static 'js/api/cart_quantity.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
 </body>
 
 </html>

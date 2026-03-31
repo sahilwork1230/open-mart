@@ -43,7 +43,7 @@ def checkout_view(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     # safety check
     if not cart.items.exists():
-        return redirect("view-cart")
+        return redirect("/view-cart/")
     addresses = request.user.addresses.all()
     return render(
         request,
